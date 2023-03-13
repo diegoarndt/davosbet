@@ -120,7 +120,7 @@ const addFixturesToPage = (fixtures) => {
       const homeScore = match.goals.home ?? '';
       const awayScore = match.goals.away ?? '';
       const date = dayjs(match.fixture.date).format('ddd, MMM DD, hh:mm A');
-      const referee = match.fixture.referee;
+      const referee = match.fixture.referee || 'To be defined';
       const stadium = match.fixture.venue.name;
       const homeLogo = match.teams.home.logo;
       const awayLogo = match.teams.away.logo;
