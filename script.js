@@ -1,23 +1,22 @@
 $(document).ready(function () {
   generateEventDates();
 
-  getFixtures();
+  getSoccerFixtures();
+
+  $('#includedContent').load(`/pages/fixtures.html`);
 
   $('.event-date').click(function () {
     const selectedDate = $(this).data('date');
     const leagueId = $('.country.selected').data('id');
 
-    getFixtures(selectedDate, leagueId);
+    getSoccerFixtures(selectedDate, leagueId);
   });
-
-  $('#includedContent').load('/pages/england.html');
 
   $('.country').click((e) => {
     $('.country.selected').removeClass('selected');
     $(e.currentTarget).addClass('selected');
 
     const country = e.target.name;
-    $('#includedContent').load(`/pages/${country}.html`);
 
     const leaguesByCountry = {
       england: 39,
@@ -32,7 +31,7 @@ $(document).ready(function () {
     const selectedDate = $('.event-dates').find('.selected').data('date');
     const leagueId = leaguesByCountry[country];
 
-    getFixtures(selectedDate, leagueId);
+    getSoccerFixtures(selectedDate, leagueId);
   });
 });
 
@@ -71,12 +70,13 @@ const generateEventDates = () => {
   });
 };
 
-const getFixtures = (
+const getSoccerFixtures = (
   date = $('.event-dates').find('.selected').data('date'),
   league = '39'
 ) => {
   //spare api key = 6ee2887d8ef0af49a956931ffac86c0b
-  const apiKey = '4b98045c42932f028e130bfc111e4ea4';
+  //spare api key = 4b98045c42932f028e130bfc111e4ea4
+  const apiKey = '6bf800e3dc492c8b904b8378e95ae76d';
 
   const requestOptions = {
     method: 'GET',
@@ -104,6 +104,24 @@ const getFixtures = (
 
 const addFixturesToPage = (fixtures) => {
   const matches = fixtures;
+
+  const countryFlags = {
+    england: 'flag-icon-gb',
+    spain: 'flag-icon-es',
+    argentina: 'flag-icon-ar',
+    italy: 'flag-icon-it',
+    brazil: 'flag-icon-br',
+    france: 'flag-icon-fr',
+    usa: 'flag-icon-us',
+    germany: 'flag-icon-de',
+  };
+
+  $('.country-flag').removeClass(function (_, className) {
+    return (className.match(/\bflag-icon-\S+/g) || []).join(' ');
+  });
+  $('.country-flag').addClass(countryFlags[$('.country.selected')[0].name]);
+  $('.league-name').text($('.country.selected').data('league'));
+  $('.country-name').text($('.country.selected')[0].innerText);
 
   if (matches.length === 0) {
     $('.matches').html(`
