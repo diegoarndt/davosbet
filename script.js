@@ -1,44 +1,31 @@
+import { requestOptions } from './apiConfig.js';
+
 $(document).ready(function () {
   generateEventDates();
-
   getSoccerFixtures();
 
+  $('#sideMenu').load(`/pages/soccerSideMenu.html`);
   $('#includedContent').load(`/pages/fixtures.html`);
+});
 
-  $('.event-date').click(function () {
-    const selectedDate = $(this).data('date');
-    const leagueId = $('.country.selected').data('id');
+$(document).on('click', '.event-date', function () {
+  const selectedDate = $(this).data('date');
 
-    getSoccerFixtures(selectedDate, leagueId);
-  });
+  getSoccerFixtures(selectedDate);
+});
 
-  $('.country').click((e) => {
-    $('.country.selected').removeClass('selected');
-    $(e.currentTarget).addClass('selected');
+$(document).on('click', '.country', function (e) {
+  $('.country.selected').removeClass('selected');
+  $(e.currentTarget).addClass('selected');
 
-    const country = e.target.name;
-
-    const leaguesByCountry = {
-      england: 39,
-      spain: 140,
-      argentina: 113,
-      italy: 135,
-      brazil: 118,
-      france: 61,
-      usa: 1996,
-      germany: 78,
-    };
-    const selectedDate = $('.event-dates').find('.selected').data('date');
-    const leagueId = leaguesByCountry[country];
-
-    getSoccerFixtures(selectedDate, leagueId);
-  });
+  getSoccerFixtures();
 });
 
 const generateEventDates = () => {
   const today = dayjs();
+  const qtyOfDays = 7;
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < qtyOfDays; i++) {
     const date = today.add(i, 'day');
     const formattedDate = date.format('ddd, DD MMM').toUpperCase();
 
@@ -49,7 +36,7 @@ const generateEventDates = () => {
       listItem.append(
         '<button type="button" class="btn btn-light event-date selected" data-date="' +
           displayDateFormatted +
-          '">Live</button>'
+          '">Today</button>'
       );
     } else {
       listItem.append(
@@ -71,24 +58,13 @@ const generateEventDates = () => {
 };
 
 const getSoccerFixtures = (
-  date = $('.event-dates').find('.selected').data('date'),
-  league = '39'
+  date = $('.event-dates').find('.selected').data('date')
 ) => {
-  //spare api key = 6ee2887d8ef0af49a956931ffac86c0b
-  //spare api key = 4b98045c42932f028e130bfc111e4ea4
-  const apiKey = '6bf800e3dc492c8b904b8378e95ae76d';
-
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      'x-rapidapi-host': 'v3.football.api-sports.io',
-      'x-rapidapi-key': apiKey,
-    },
-    redirect: 'follow',
-  };
-
   const endpoint = 'fixtures';
-  const season = '2022';
+  const league = $('.country.selected').data('id');
+  const season = $('.country.selected').data('season');
+
+  console.log(date, league, season);
 
   fetch(
     `https://v3.football.api-sports.io/${endpoint}?league=${league}&season=${season}&date=${date}`,
@@ -108,12 +84,14 @@ const addFixturesToPage = (fixtures) => {
   const countryFlags = {
     england: 'flag-icon-gb',
     spain: 'flag-icon-es',
-    argentina: 'flag-icon-ar',
     italy: 'flag-icon-it',
-    brazil: 'flag-icon-br',
-    france: 'flag-icon-fr',
-    usa: 'flag-icon-us',
     germany: 'flag-icon-de',
+    france: 'flag-icon-fr',
+    netherlands: 'flag-icon-nl',
+    portugal: 'flag-icon-pt',
+    argentina: 'flag-icon-ar',
+    brazil: 'flag-icon-br',
+    usa: 'flag-icon-us',
   };
 
   $('.country-flag').removeClass(function (_, className) {
@@ -126,7 +104,7 @@ const addFixturesToPage = (fixtures) => {
   if (matches.length === 0) {
     $('.matches').html(`
         <div class="d-flex flex-grow-1 justify-content-center align-items-center p-5">
-          <span class="text-muted">No live match happening at the moment</span>
+          <span class="text-muted">No matches for today</span>
         </div>
       `);
   } else {
@@ -137,11 +115,20 @@ const addFixturesToPage = (fixtures) => {
       const awayTeam = match.teams.away.name;
       const homeScore = match.goals.home ?? '';
       const awayScore = match.goals.away ?? '';
-      const date = dayjs(match.fixture.date).format('ddd, MMM DD, hh:mm A');
+
       const referee = match.fixture.referee || 'To be defined';
       const stadium = match.fixture.venue.name;
       const homeLogo = match.teams.home.logo;
       const awayLogo = match.teams.away.logo;
+
+      const fixtureDate = dayjs(match.fixture.date);
+      const formattedTime = fixtureDate.format('ddd, MMM DD, hh:mm A');
+      const formattedDate = `${fixtureDate.add(1, 'day').format('ddd, MMM DD')} (Not informed)`;
+      const timeOrDate =
+        match.fixture.date.split('T')[1].startsWith('00:')
+          ? formattedDate
+          : formattedTime;
+      const date = `${timeOrDate}`;
 
       const card = `
             <div class="card bg-black text-white mb-3">
@@ -155,7 +142,7 @@ const addFixturesToPage = (fixtures) => {
                 </h5>
               </div>
               <div class="card-footer text-center">
-                <p class="card-text">${date}</p>
+                <p class="card-text">${date}<span></span></p>
                 <p class="card-text">Referee: ${referee}</p>
                 <p class="card-text">Stadium: ${stadium}</p>
               </div>
