@@ -25,83 +25,50 @@
                     <input type="text" class="form-control search-input bg-dark border-0"
                         placeholder="Search for anything">
                 </div>
-                <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
-                    <button type="button" name="england"
-                        class="btn btn-outline-secondary btn-block text-left m-0 border-0">
-                        <span class="flag-icon flag-icon-gb mr-2"></span>England
-                    </button>
-                    <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
-                </div>
-                <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
-                    <button type="button" name="spain"
-                        class="btn btn-outline-secondary btn-block text-left m-0 border-0">
-                        <span class="flag-icon flag-icon-es mr-2"></span>Spain
-                    </button>
-                    <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
-                </div>
-                <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
-                    <button type="button" name="argentina"
-                        class="btn btn-outline-secondary btn-block text-left m-0 border-0">
-                        <span class="flag-icon flag-icon-ar mr-2"></span>Argentina
-                    </button>
-                    <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
-                </div>
-                <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
-                    <button type="button" name="italy"
-                        class="btn btn-outline-secondary btn-block text-left m-0 border-0">
-                        <span class="flag-icon flag-icon-it mr-2"></span>Italy
-                    </button>
-                    <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
-                </div>
-                <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
-                    <button type="button" name="brazil"
-                        class="btn btn-outline-secondary btn-block text-left m-0 border-0">
-                        <span class="flag-icon flag-icon-br mr-2"></span>Brazil
-                    </button>
-                    <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
-                </div>
-                <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
-                    <button type="button" name="france"
-                        class="btn btn-outline-secondary btn-block text-left m-0 border-0">
-                        <span class="flag-icon flag-icon-fr mr-2"></span>France
-                    </button>
-                    <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
-                </div>
-                <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
-                    <button type="button" name="usa" class="btn btn-outline-secondary btn-block text-left m-0 border-0">
-                        <span class="flag-icon flag-icon-us mr-2"></span>USA
-                    </button>
-                    <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
-                </div>
-                <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
-                    <button type="button" name="germany"
-                        class="btn btn-outline-secondary btn-block text-left m-0 border-0">
-                        <span class="flag-icon flag-icon-de mr-2"></span>Germany
-                    </button>
-                    <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+                <div id="sideMenu">
+
                 </div>
             </div>
             <div class="col-9 p-0">
                 <nav class="navbar navbar-expand-md bg-darkgray pt-5 pb-5 mb-3">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item clickable text-white h5 p-2">
-                                <i class="fas fa-futbol p-3"></i><span class="mr-3">Soccer</span>
+                            <li class="nav-item d-flex">
+                                <button type="button"
+                                    class="btn d-flex align-items-center text-white m-0 border-0 selected"
+                                    name="football">
+                                    <i class="fas fa-futbol m-0 p-3"></i><span class="h5 m-0 mr-3">Soccer</span>
+                                </button>
                             </li>
-                            <li class="nav-item clickable text-muted h5 p-2">
-                                <i class="fas fa-football p-3"></i><span class="mr-3">Football</span>
+                            <li class="nav-item d-flex">
+                                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0"
+                                    name="kii">
+                                    <i class="fas fa-football m-0 p-3"></i><span class="h5 m-0 mr-3">NFL</span>
+                                </button>
                             </li>
-                            <li class="nav-item clickable text-muted h5 p-2">
-                                <i class="fas fa-football-ball p-3"></i><span class="mr-3">Rugby</span>
+                            <li class="nav-item d-flex">
+                                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0"
+                                    name="kk">
+                                    <i class="fas fa-basketball-ball m-0 p-3"></i><span class="h5 m-0 mr-3">NBA</span>
+                                </button>
                             </li>
-                            <li class="nav-item clickable text-muted h5 p-2">
-                                <i class="fas fa-basketball-ball p-3"></i><span class="mr-3">Basketball</span>
+                            <li class="nav-item d-flex">
+                                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0"
+                                    name="ll">
+                                    <i class="fas fa-hockey-puck m-0 p-3"></i><span class="h5 m-0 mr-3">NHL</span>
+                                </button>
                             </li>
-                            <li class="nav-item clickable text-muted h5 p-2">
-                                <i class="fas fa-baseball-bat-ball p-3"></i><span class="mr-3">Baseball</span>
+                            <li class="nav-item d-flex">
+                                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0"
+                                    name="kkp">
+                                    <i class="fas fa-baseball-bat-ball m-0 p-3"></i><span class="h5 m-0 mr-3">MLB</span>
+                                </button>
                             </li>
-                            <li class="nav-item clickable text-muted h5 p-2">
-                                <i class="fas fa-hockey-puck p-3"></i><span class="mr-3">Hockey</span>
+                            <li class="nav-item d-flex">
+                                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0"
+                                    name="po">
+                                    <i class="fas fa-volleyball-ball m-0 p-3"></i><span class="h5 m-0 mr-3">NVA</span>
+                                </button>
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto">
@@ -120,13 +87,12 @@
         </div>
     </div>
 
-
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" defer></script>
-    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js" defer></script>
-    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js" defer></script>
-    <script src="../script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../script.js"></script>
 </body>
 
 </html>

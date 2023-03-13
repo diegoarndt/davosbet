@@ -50,16 +50,8 @@
     margin-bottom: 10px;
 }
 
-.clickable {
-    cursor: pointer;
-}
-
-.clickable:hover {
-    background-color: #ffc107;
-}
-
 .nav-item:hover {
-    background-color: #ffc107;
+    background-color: #495057;
     border-radius: 50px;
     transition: all 0.2s ease-in-out;
 }
@@ -70,6 +62,12 @@
 }
 
 .event-date:hover {
+    background-color: #495057 !important;
+    color: white !important;
+    border-radius: 10px;
+}
+
+.selected {
     background-color: #ffc107 !important;
     color: white !important;
     border-radius: 10px;
