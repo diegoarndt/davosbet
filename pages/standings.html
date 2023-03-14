@@ -22,6 +22,7 @@
       rel="stylesheet"
       href="https://cdn.usebootstrap.com/bootstrap/4.6.0/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="/styles/standings.css" />
   </head>
   <body>
     <div class="container-fluid h-100">
@@ -30,6 +31,7 @@
           <div class="logo p-5 d-flex justify-content-center">
             <img src="/assets/davosbet.png" width="150" alt="Logo" />
           </div>
+
           <div class="search-box bg-dark mb-5">
             <i class="fas fa-search search-icon"></i>
             <input
@@ -117,28 +119,69 @@
             </div>
           </nav>
           <div class="container">
+            <div class="text-center text-white">
+              <a href="#" class="_link" data-league="39">Premier League</a>
+              <a href="#" class="_link" data-league="61">France - Ligue 1</a>
+              <a href="#" class="_link" data-league="140">La Liga</a>
+              <a href="#" class="_link" data-league="78"
+                >Germany - Bundesliga 1</a
+              >
+              <a href="#" class="_link" data-league="1">WorldCup</a>
+            </div>
+            <div
+              id="wg-api-football-standings"
+              data-host="v3.football.api-sports.io"
+              data-key="f1cb40a4c6eb51d113be6927bc3b9587"
+              data-league="39"
+              data-team=""
+              data-season="2022"
+              data-theme="dark"
+              data-show-errors="false"
+              data-show-logos="true"
+              class="wg_loader"
+            ></div>
             <ul
               class="list-inline event-dates d-flex justify-content-center"
             ></ul>
           </div>
           <div class="anchor">
-            <a
-              href="standings.html"
-              class="fa-anchor text-warning"
-              target="_blank"
+            <a href="./home.html" class="fa-solid fa-house text-warning">
+              Go back to Home</a
             >
-              Watch overall standings..
-            </a>
           </div>
           <div id="includedContent"></div>
         </div>
       </div>
     </div>
+
+    <script
+      type="module"
+      src="https://widgets.api-sports.io/2.0.3/widgets.js"
+    ></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="../script.js"></script>
+    <!-- <script type="module" src="../script.js"></script> -->
   </body>
 </html>
+<script>
+  document.addEventListener("click", function (event) {
+    if (!event.target.matches("._link")) return;
+    event.preventDefault();
+
+    let id = event.target.getAttribute("data-league");
+
+    let standings = document.getElementById("wg-api-football-standings");
+    standings.innerHTML = "";
+    standings.setAttribute("data-league", id);
+
+    window.document.dispatchEvent(
+      new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+  });
+</script>

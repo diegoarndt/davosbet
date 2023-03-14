@@ -1,0 +1,11 @@
+body {
+  background-color: #ffcc000d;
+}
+a {
+  color: white;
+  text-align: center;
+  margin-right: 100px;
+  text-shadow: #ffcc000d;
+  inline-size: block;
+  margin-bottom: 50px;
+}
