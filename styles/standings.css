@@ -1,11 +1,7 @@
-body {
-  background-color: #ffcc000d;
+#wg-api-football-standings td {
+  font-size: 20px;
 }
-a {
-  color: white;
-  text-align: center;
-  margin-right: 100px;
-  text-shadow: #ffcc000d;
-  inline-size: block;
-  margin-bottom: 50px;
+
+a:hover {
+  color: #fff !important;
 }
