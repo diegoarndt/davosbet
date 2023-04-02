@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.6.0/css/bootstrap.min.css">
 </head>
 
-<header>
+<body>
     <div class="container p-4">
         <div class="row justify-content-center">
             <div class="col-md-8 d-flex align-items-center">
@@ -28,16 +28,13 @@
             </div>
         </div>
     </div>
-</header>
-
-<body>
     <div class="global-container bg-black">
         <div class="login-form">
             <div class="card-body bg-black text-white-50">
                 <h3 class="card-title text-center text-white font-weight-bold">Sign up</h3>
                 <h6 class="text-center">Easily with</h6>
                 <div class="row mb-4">
-                    <div class="col-sm-6 text-right">
+                    <div class="col-sm-6 text-right mb-3 mb-sm-0">
                         <button type="submit" class="btn btn-outline-warning text-white btn-google">
                             <i class="fab fa-google"></i><span class="ml-2">Sign up with Google</span>
                         </button>
@@ -65,7 +62,8 @@
                         </div>
                         <div class="form-group">
                             <label for="inputAge">Age</label>
-                            <input required type="range" class="form-control-range" id="inputAge" min="18" max="100" value="18">
+                            <input required type="range" class="form-control-range" id="inputAge" min="18" max="100"
+                                value="18">
                             <span id="inputAgeValue">18</span>
                         </div>
                         <div class="form-group">
@@ -113,7 +111,8 @@
                         <div class="form-group">
                             <label for="inputProfilePicture">Profile Picture</label>
                             <div class="custom-file">
-                                <input required type="file" class="custom-file-input" id="inputProfilePicture" accept="image/*">
+                                <input required type="file" class="custom-file-input" id="inputProfilePicture"
+                                    accept="image/*">
                                 <label class="custom-file-label" for="inputProfilePicture">Choose file</label>
                             </div>
                         </div>
