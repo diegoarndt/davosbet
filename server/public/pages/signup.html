@@ -3,7 +3,7 @@
 
 <head>
     <title>Davosbet</title>
-    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../styles/style.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.6.0/css/bootstrap.min.css">
@@ -22,7 +22,8 @@
             <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <div class="text-center">
                     <span class="text-muted">Already have an account?</span>
-                    <a href="../index.html" class="btn btn-outline-warning text-white ml-2 mt-0 align-self-center">Login</a>
+                    <a href="../index.html"
+                        class="btn btn-outline-warning text-white ml-2 mt-0 align-self-center">Login</a>
                 </div>
             </div>
         </div>
@@ -51,30 +52,73 @@
                 <div class="card-text">
                     <form>
                         <div class="form-group">
-                            <label for="inputUsername">Username</label>
-                            <input type="username"
+                            <label for="inputFirstName">First Name</label>
+                            <input required type="text"
                                 class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
-                                id="inputUsername" autocomplete="off" aria-describedby="usernameHelp">
+                                id="inputFirstName" autocomplete="off" aria-describedby="firstNameHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLastName">Last Name</label>
+                            <input required type="text"
+                                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+                                id="inputLastName" autocomplete="off" aria-describedby="lastNameHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAge">Age</label>
+                            <input required type="range" class="form-control-range" id="inputAge" min="18" max="100" value="18">
+                            <span id="inputAgeValue">18</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputOccupation">Occupation</label>
+                            <select class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+                                id="inputOccupation">
+                                <option>Student</option>
+                                <option>Developer</option>
+                                <option>Designer</option>
+                                <option>Doctor</option>
+                                <option>Engineer</option>
+                                <option>Teacher</option>
+                                <option>Lawyer</option>
+                                <option>Designer</option>
+                                <option>Writer</option>
+                                <option>Musician</option>
+                                <option>Entrepreneur</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDateOfBirth">Date of Birth</label>
+                            <input required type="date"
+                                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+                                id="inputDateOfBirth" autocomplete="off" aria-describedby="dateOfBirthHelp">
                         </div>
                         <div class="form-group">
                             <label for="inputEmail">Email address</label>
-                            <input type="email"
+                            <input required type="email"
                                 class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
                                 id="inputEmail" autocomplete="off" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Password</label>
-                            <input type="password"
+                            <input required type="password"
                                 class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
                                 id="inputPassword">
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword">Repeat password</label>
-                            <input type="password"
+                            <label for="inputConfirmPassword">Confirm Password</label>
+                            <input required type="password"
                                 class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
-                                id="inputPassword">
+                                id="inputConfirmPassword">
                         </div>
-                        <button type="submit" class="btn btn-warning btn-block text-white p-2">Create an account</button>
+                        <div class="form-group">
+                            <label for="inputProfilePicture">Profile Picture</label>
+                            <div class="custom-file">
+                                <input required type="file" class="custom-file-input" id="inputProfilePicture" accept="image/*">
+                                <label class="custom-file-label" for="inputProfilePicture">Choose file</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-block text-white p-2">Create an
+                            account</button>
                     </form>
                 </div>
             </div>
@@ -86,6 +130,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" defer></script>
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js" defer></script>
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js" defer></script>
+
+    <script>
+        const inputAge = document.getElementById("inputAge");
+        const inputAgeValue = document.getElementById("inputAgeValue");
+
+        // Update the span element with the selected age value
+        inputAge.addEventListener("input", () => {
+            inputAgeValue.textContent = inputAge.value;
+        });
+    </script>
 </body>
 
 </html>
