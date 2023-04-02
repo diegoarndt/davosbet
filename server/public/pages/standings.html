@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Davosbet</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../style.css" />
+  <link rel="stylesheet" type="text/css" href="../styles/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.6.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/styles/standings.css" />
+</head>
+
+<body>
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="col-3 bg-darkgray">
+        <div class="logo p-5 d-flex justify-content-center">
+          <img src="/assets/davosbet.png" width="150" alt="Logo" />
+        </div>
+
+        <div class="search-box bg-dark mb-5">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="form-control search-input bg-dark border-0" placeholder="Search for anything" />
+        </div>
+        <div id="sideMenu">
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="england"
+              class="btn btn-outline-secondary btn-block country text-left p-3 p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="140" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-gb mr-2"></span>England
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="spain"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="140" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-es mr-2"></span>Spain
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="italy"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="135" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-it mr-2"></span>Italy
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="germany"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="78" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-de mr-2"></span>Germany
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="france"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="61" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-fr mr-2"></span>France
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="netherlands"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="88" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-nl mr-2"></span>Netherlands
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="portugal"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="94" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-pt mr-2"></span>Portugal
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="argentina"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="128" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-ar mr-2"></span>Argentina
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="brazil"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="73" style="text-decoration: none; color: inherit;">
+                <span class="flag-icon flag-icon-br mr-2"></span>Brazil
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+          <div class="btn-container d-flex align-items-center position-relative pt-2 pb-2">
+            <button type="button" name="usa"
+              class="btn btn-outline-secondary btn-block country text-left p-3 m-0 border-0">
+              <a href="#" class="_link" data-league="253" style="text-decoration: none; color: inherit;">
+                <span class="flag flag-icon flag-icon-us mr-2"></span>United States
+              </a>
+            </button>
+            <i class="fas fa-chevron-right position-absolute mr-2" style="right: 0;"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-9 p-0">
+        <nav class="navbar navbar-expand-md bg-darkgray pt-5 pb-5 mb-3">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item d-flex">
+                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0 selected"
+                  name="football">
+                  <i class="fas fa-futbol m-0 p-3"></i><span class="h5 m-0 mr-3">Soccer</span>
+                </button>
+              </li>
+              <li class="nav-item d-flex">
+                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" name="kii">
+                  <i class="fas fa-football m-0 p-3"></i><span class="h5 m-0 mr-3">NFL</span>
+                </button>
+              </li>
+              <li class="nav-item d-flex">
+                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" name="kk">
+                  <i class="fas fa-basketball-ball m-0 p-3"></i><span class="h5 m-0 mr-3">NBA</span>
+                </button>
+              </li>
+              <li class="nav-item d-flex">
+                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" name="ll">
+                  <i class="fas fa-hockey-puck m-0 p-3"></i><span class="h5 m-0 mr-3">NHL</span>
+                </button>
+              </li>
+              <li class="nav-item d-flex">
+                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" name="kkp">
+                  <i class="fas fa-baseball-bat-ball m-0 p-3"></i><span class="h5 m-0 mr-3">MLB</span>
+                </button>
+              </li>
+              <li class="nav-item d-flex">
+                <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" name="po">
+                  <i class="fas fa-volleyball-ball m-0 p-3"></i><span class="h5 m-0 mr-3">NVA</span>
+                </button>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <button class="btn btn-warning text-white mr-3 align-self-center">
+                  Laya
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container">
+          <div id="wg-api-football-standings" data-host="v3.football.api-sports.io"
+            data-key="f1cb40a4c6eb51d113be6927bc3b9587" data-league="39" data-team="" data-season="2022"
+            data-theme="dark" data-show-errors="false" data-show-logos="true" class="wg_loader">
+          </div>
+        </div>
+        <div class="anchor mt-3">
+          <a href="./home.html" class="fa-solid fa-house text-warning">
+            Go back to home page</a>
+        </div>
+        <div id="includedContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="https://widgets.api-sports.io/2.0.3/widgets.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+<script>
+  document.addEventListener("click", function (event) {
+    if (!event.target.matches("._link")) return;
+    event.preventDefault();
+
+    let id = event.target.getAttribute("data-league");
+
+    let standings = document.getElementById("wg-api-football-standings");
+    standings.innerHTML = "";
+    standings.setAttribute("data-league", id);
+
+    window.document.dispatchEvent(
+      new Event("DOMContentLoaded", {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+  });
+</script>

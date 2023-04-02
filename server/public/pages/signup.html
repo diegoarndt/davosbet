@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Davosbet</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.6.0/css/bootstrap.min.css">
+</head>
+
+<header>
+    <div class="container p-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8 d-flex align-items-center">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="/assets/davosbet.png" width="150" alt="logo">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                <div class="text-center">
+                    <span class="text-muted">Already have an account?</span>
+                    <a href="../index.html" class="btn btn-outline-warning text-white ml-2 mt-0 align-self-center">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div class="global-container bg-black">
+        <div class="login-form">
+            <div class="card-body bg-black text-white-50">
+                <h3 class="card-title text-center text-white font-weight-bold">Sign up</h3>
+                <h6 class="text-center">Easily with</h6>
+                <div class="row mb-4">
+                    <div class="col-sm-6 text-right">
+                        <button type="submit" class="btn btn-outline-warning text-white btn-google">
+                            <i class="fab fa-google"></i><span class="ml-2">Sign up with Google</span>
+                        </button>
+                    </div>
+                    <div class="col-sm-6 text-left">
+                        <button type="submit" class="btn btn-outline-warning text-white btn-apple">
+                            <i class="fab fa-apple"></i><span class="ml-2">Sign up with Apple</span>
+                        </button>
+                    </div>
+                </div>
+                <h6 class="text-center">Or fill in your details</h6>
+                <div class="card-text">
+                    <form>
+                        <div class="form-group">
+                            <label for="inputUsername">Username</label>
+                            <input type="username"
+                                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+                                id="inputUsername" autocomplete="off" aria-describedby="usernameHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail">Email address</label>
+                            <input type="email"
+                                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+                                id="inputEmail" autocomplete="off" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Password</label>
+                            <input type="password"
+                                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+                                id="inputPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Repeat password</label>
+                            <input type="password"
+                                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+                                id="inputPassword">
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-block text-white p-2">Create an account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../server/public/script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" defer></script>
+    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js" defer></script>
+    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js" defer></script>
+</body>
+
+</html>

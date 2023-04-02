@@ -34,7 +34,7 @@ app.get('/profile', (req, res) => {
 
 // Route for the contact us page
 app.get('/contact-us', (req, res) => {
-  res.sendFile(__dirname + '/pages/contact-us.html');
+  res.render('template', { content: 'contact-us.ejs' });
 });
 
 // Route for the about us page
