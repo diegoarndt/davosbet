@@ -56,3 +56,8 @@ form {
     font-size: 13px;
     margin-top: 20px;
 }
+
+.custom-select {
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+  }
