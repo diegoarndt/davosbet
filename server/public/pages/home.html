@@ -16,15 +16,28 @@
 <body>
   <div class="container-fluid h-100">
     <div class="row h-100">
-      <div class="col-3 bg-darkgray">
+      <div class="col-3 bg-darkgray d-flex flex-column">
         <div class="logo p-5 d-flex justify-content-center">
-          <a href="home.html"><img src="/assets/davosbet.png" width="150" alt="Logo" /></a>
+          <a href="pages/home.html"><img src="/assets/davosbet.png" width="150" alt="Logo" /></a>
         </div>
         <div class="search-box bg-dark mb-5">
           <i class="fas fa-search search-icon"></i>
           <input type="text" class="form-control search-input bg-dark border-0" placeholder="Search for anything" />
         </div>
         <div id="sideMenu"></div>
+        <div class="mt-auto">
+          <div class="text-center p-3">
+            <a href="/contact-us" class="btn btn-outline-warning text-white mr-3">
+              Contact
+            </a>
+            <a href="/about-us" class="btn btn-outline-warning text-white">
+              About
+            </a>
+          </div>
+          <div class="text-center text-muted pb-3">
+            <span>Version 1.0.0</span>
+          </div>
+        </div>
       </div>
       <div class="col-9 p-0">
         <nav class="navbar navbar-expand-md bg-darkgray pt-5 pb-5 mb-3">
@@ -63,10 +76,15 @@
               </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-              <li>
-                <button class="btn btn-warning text-white mr-3 align-self-center">
+              <li class="dropdown">
+                <button class="btn btn-warning text-white mr-3 align-self-center dropdown-toggle" type="button"
+                  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Laya
                 </button>
+                <div class="dropdown-menu dropdown-menu-right custom-dropdown" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="signup.html">Profile</a>
+                  <a class="dropdown-item" href="#">Sign Out</a>
+                </div>
               </li>
             </ul>
           </div>
