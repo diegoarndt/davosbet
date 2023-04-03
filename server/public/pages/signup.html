@@ -14,7 +14,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 d-flex align-items-center">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="/index.html">
                         <img src="/assets/davosbet.png" width="150" alt="logo">
                     </a>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="text-center">
                     <span class="text-muted">Already have an account?</span>
                     <a href="../index.html"
-                        class="btn btn-outline-warning text-white ml-2 mt-0 align-self-center">Login</a>
+                        class="btn btn-outline-warning text-white ml-2 mt-0 align-self-center">Sign in</a>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inputOccupation">Occupation</label>
-                            <select class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+                            <select class="form-control form-control-sm text-white bg-dark rounded-pill border-0 custom-select"
                                 id="inputOccupation">
                                 <option>Student</option>
                                 <option>Developer</option>
@@ -111,11 +111,12 @@
                         <div class="form-group">
                             <label for="inputProfilePicture">Profile Picture</label>
                             <div class="custom-file">
-                                <input required type="file" class="custom-file-input" id="inputProfilePicture"
+                                <input type="file" class="custom-file-input" id="inputProfilePicture"
                                     accept="image/*">
                                 <label class="custom-file-label" for="inputProfilePicture">Choose file</label>
                             </div>
                         </div>
+                        <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
                         <button type="submit" class="btn btn-warning btn-block text-white p-2">Create an
                             account</button>
                     </form>
@@ -124,11 +125,13 @@
         </div>
     </div>
 
-    <script src="../server/public/script.js" defer></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" defer></script>
-    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js" defer></script>
-    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
+    <script type="module" src="./../scripts/script.js"></script>
+    <script type="module" src="./../scripts/signup.js"></script>
 
     <script>
         const inputAge = document.getElementById("inputAge");

@@ -1,4 +1,4 @@
-import { requestOptions } from './config/config.js';
+import { requestOptions } from './../config/config.js';
 
 $(function() {
   generateEventDates();
