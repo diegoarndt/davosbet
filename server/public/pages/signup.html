@@ -28,24 +28,11 @@
             </div>
         </div>
     </div>
-    <div class="global-container-sign-up bg-black">
+    <div class="global-container-sign-up bg-black pt-5">
         <div class="login-form">
             <div class="card-body bg-black text-white-50">
                 <h3 class="card-title text-center text-white font-weight-bold">Sign up</h3>
-                <h6 class="text-center">Easily with</h6>
-                <div class="row mb-4">
-                    <div class="col-sm-6 text-right mb-3 mb-sm-0">
-                        <button type="submit" class="btn btn-outline-warning text-white btn-google">
-                            <i class="fab fa-google"></i><span class="ml-2">Sign up with Google</span>
-                        </button>
-                    </div>
-                    <div class="col-sm-6 text-left">
-                        <button type="submit" class="btn btn-outline-warning text-white btn-apple">
-                            <i class="fab fa-apple"></i><span class="ml-2">Sign up with Apple</span>
-                        </button>
-                    </div>
-                </div>
-                <h6 class="text-center">Or fill in your details</h6>
+                <h6 class="text-center">to create new Davosbet sportscenter account</h6>
                 <div class="card-text">
                     <form>
                         <div class="form-group">
@@ -130,6 +117,14 @@
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
+
+    <script type="module">
+        import { initializeApp } from 'https://cdn.skypack.dev/@firebase/app';
+        import { createUserWithEmailAndPassword } from 'https://cdn.skypack.dev/@firebase/auth';
+        import { getFirestore } from 'https://cdn.skypack.dev/@firebase/firestore';
+        import { getStorage } from 'https://cdn.skypack.dev/@firebase/storage';
+    </script>
+
     <script type="module" src="./../scripts/signup.js"></script>
 
     <script>
