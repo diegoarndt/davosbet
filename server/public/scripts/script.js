@@ -1,6 +1,6 @@
-import { requestOptions } from './apiConfig.js';
+import { requestOptions } from './../config/config.js';
 
-$(document).ready(function () {
+$(function() {
   generateEventDates();
   getSoccerFixtures();
 
