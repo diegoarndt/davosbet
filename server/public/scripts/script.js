@@ -1,6 +1,18 @@
 import { requestOptions } from './../config/config.js';
 
-$(function() {
+$(function () {
+  if (!localStorage.getItem('idToken')) {
+    // Redirect the user to the login page if they are not logged in
+    window.location.href = '/';
+  }
+
+  $('#signout-button').click(() => {
+    // Clear the user's ID token from local storage
+    localStorage.removeItem('idToken');
+    // Redirect the user to the login page
+    window.location.href = '/';
+  });  
+
   generateEventDates();
   getSoccerFixtures();
 
@@ -123,11 +135,12 @@ const addFixturesToPage = (fixtures) => {
 
       const fixtureDate = dayjs(match.fixture.date);
       const formattedTime = fixtureDate.format('ddd, MMM DD, hh:mm A');
-      const formattedDate = `${fixtureDate.add(1, 'day').format('ddd, MMM DD')} (Not informed)`;
-      const timeOrDate =
-        match.fixture.date.split('T')[1].startsWith('00:')
-          ? formattedDate
-          : formattedTime;
+      const formattedDate = `${fixtureDate
+        .add(1, 'day')
+        .format('ddd, MMM DD')} (Not informed)`;
+      const timeOrDate = match.fixture.date.split('T')[1].startsWith('00:')
+        ? formattedDate
+        : formattedTime;
       const date = `${timeOrDate}`;
 
       const card = `

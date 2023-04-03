@@ -50,6 +50,8 @@ const useAuthentication = () => {
           password
         );
         user = userCredential.user;
+        // Store the user's ID token in local storage
+        localStorage.setItem('idToken', user.qa);
       } else if (option === authOptions.signUp) {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
