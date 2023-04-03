@@ -29,8 +29,8 @@ app.get('/home', (req, res) => {
 
 // Route for the profile page
 app.get('/profile', (req, res) => {
-  res.sendFile(__dirname + '/pages/profile.html');
-});
+    res.render('template', { content: 'profile.ejs' });
+  });
 
 // Route for the contact us page
 app.get('/contact-us', (req, res) => {
@@ -41,7 +41,6 @@ app.get('/contact-us', (req, res) => {
 app.get('/about-us', (req, res) => {
   res.render('template', { content: 'about-us.ejs' });
 });
-  
 
 // Start the server
 app.listen(port, () => {

@@ -1,0 +1,63 @@
+<form>
+    <div class="form-group">
+        <label for="inputFirstName">First Name</label>
+        <input required type="text" class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+            id="inputFirstName" autocomplete="off" aria-describedby="firstNameHelp">
+    </div>
+    <div class="form-group">
+        <label for="inputLastName">Last Name</label>
+        <input required type="text" class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+            id="inputLastName" autocomplete="off" aria-describedby="lastNameHelp">
+    </div>
+    <div class="form-group">
+        <label for="inputAge">Age</label>
+        <input required type="range" class="form-control-range" id="inputAge" min="18" max="100" value="18">
+        <span id="inputAgeValue">18</span>
+    </div>
+    <div class="form-group">
+        <label for="inputOccupation">Occupation</label>
+        <select class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputOccupation">
+            <option>Student</option>
+            <option>Developer</option>
+            <option>Designer</option>
+            <option>Doctor</option>
+            <option>Engineer</option>
+            <option>Teacher</option>
+            <option>Lawyer</option>
+            <option>Designer</option>
+            <option>Writer</option>
+            <option>Musician</option>
+            <option>Entrepreneur</option>
+            <option>Other</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="inputDateOfBirth">Date of Birth</label>
+        <input required type="date" class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+            id="inputDateOfBirth" autocomplete="off" aria-describedby="dateOfBirthHelp">
+    </div>
+    <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input required type="email" class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
+            id="inputEmail" autocomplete="off" aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input required type="password"
+            class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputPassword">
+    </div>
+    <div class="form-group">
+        <label for="inputConfirmPassword">Confirm Password</label>
+        <input required type="password"
+            class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputConfirmPassword">
+    </div>
+    <div class="form-group">
+        <label for="inputProfilePicture">Profile Picture</label>
+        <div class="custom-file">
+            <input required type="file" class="custom-file-input" id="inputProfilePicture" accept="image/*">
+            <label class="custom-file-label" for="inputProfilePicture">Choose file</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-warning btn-block text-white p-2">Create an
+        account</button>
+</form>
