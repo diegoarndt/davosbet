@@ -20,18 +20,10 @@
         <div class="logo p-5 d-flex justify-content-center">
           <a href="/pages/home.html"><img src="/assets/davosbet.png" width="150" alt="Logo" /></a>
         </div>
-        <div class="search-box row d-flex justify-content-center align-content-centertext-center">
-          <!-- <i class="fas fa-search search-icon"></i>
-            <input
-              type="text"
-              class="form-control search-input bg-dark border-0"
-              placeholder="Search for anything"
-            /> -->
-          <button type="button"
-            class="text-center btn d-flex align-items-center text-white m-0 border-0 selected h5 m-0 text-center"
-            name="submit" id="submit">
-            Search
-          </button>
+        <div class="search-box bg-dark mb-5">
+          <i class="fas fa-search search-icon" id="search-engine"></i>
+          <input type="text" id="query" class="form-control search-input bg-dark border-0 text-white"
+            placeholder="Search for a club" />
         </div>
         <div id="sideMenu"></div>
         <div class="mt-auto">
@@ -115,8 +107,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
-
-    <script type="module" src="../scripts/search.js"></script>
+    
+    <script type="module" src="https://widgets.api-sports.io/2.0.3/widgets.js"></script>
     <script type="module" src="../scripts/script.js"></script>
 </body>
 

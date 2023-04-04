@@ -42,6 +42,16 @@ $(document).on('click', '.country', function (e) {
   getSoccerFixtures();
 });
 
+$(document).on('click', '#search-engine', function (e) {
+  e.preventDefault();
+  $('#includedContent').load(`/pages/searchResult.html`);
+
+  const query = document.getElementById('query').value;
+
+  getTeam(query);
+  console.log(query);
+});
+
 const generateEventDates = () => {
   const today = dayjs();
   const qtyOfDays = 7;
@@ -76,6 +86,26 @@ const generateEventDates = () => {
     $('.event-date.selected').removeClass('selected');
     $(this).addClass('selected');
   });
+};
+
+const getTeam = (query) => {
+  fetch('https://v3.football.api-sports.io/teams?name=' + query, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      const data = result;
+
+      if (data.results === 0) {
+        $('#team').text('No team found or API is down :(');
+        $('#stadium-section').hide();
+        return;
+      }
+      $('#team').text('Team:' + data.response[0].team.name);
+      $('#venue').text('Venue: ' + data.response[0].venue.name);
+      $('#capacity').text('Capacity: ' + data.response[0].venue.capacity + ' seats');
+      $('#logo').attr('src', data.response[0].venue.image);
+      console.log(data);
+    })
+    .catch((error) => console.log('error', error));
 };
 
 const getSoccerFixtures = (
