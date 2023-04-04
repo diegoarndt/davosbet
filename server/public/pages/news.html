@@ -137,7 +137,7 @@
             </div>
           </nav>
           <div class="container">
-            <div id="result" style="color: red"></div>
+            <div id="container" style="color: red"></div>
             <!-- <div id="wg-api-football-standings" data-host="v3.football.api-sports.io"
             data-key="f1cb40a4c6eb51d113be6927bc3b9587" data-league="39" data-team="" data-season="2022"
             data-theme="dark" data-show-errors="false" data-show-logos="true" class="wg_loader">
@@ -185,36 +185,36 @@
     );
   });
 
-  var getJSON = function (url) {
-    return new Promise(function (resolve, reject) {
-      var xhr = new XMLHttpRequest();
-      xhr.open("get", url, true);
-      xhr.responseType = "json";
-      xhr.onload = function () {
-        var status = xhr.status;
-        if (status == 200) {
-          resolve(xhr.response);
-        } else {
-          reject(status);
-        }
-      };
-      xhr.send();
-    });
-  };
+  // var getJSON = function (url) {
+  //   return new Promise(function (resolve, reject) {
+  //     var xhr = new XMLHttpRequest();
+  //     xhr.open("get", url, true);
+  //     xhr.responseType = "json";
+  //     xhr.onload = function () {
+  //       var status = xhr.status;
+  //       if (status == 200) {
+  //         resolve(xhr.response);
+  //       } else {
+  //         reject(status);
+  //       }
+  //     };
+  //     xhr.send();
+  //   });
+  // };
 
-  getJSON(
-    "https://newsdata.io/api/1/news?apikey=pub_199957ae6d4a4143dddf1a9285132b995f457&q=soccer"
-  ).then(
-    function (data) {
-      alert("Your Json result is:  " + data.result); //you can comment this, i used it to debug
+  // getJSON(
+  //   "https://newsdata.io/api/1/news?apikey=pub_199957ae6d4a4143dddf1a9285132b995f457&q=soccer"
+  // ).then(
+  //   function (data) {
+  //     alert("Your Json result is:  " + data.result); //you can comment this, i used it to debug
 
-      result.innerText = data.result; //display the result in an HTML element
-    },
-    function (status) {
-      //error detection....
-      alert("Something went wrong.");
-    }
-  );
+  //     result.innerText = data.result; //display the result in an HTML element
+  //   },
+  //   function (status) {
+  //     //error detection....
+  //     alert("Something went wrong.");
+  //   }
+  // );
 
   // function CallURL() {
   //   $.ajax({
@@ -234,4 +234,18 @@
   // function JsonpCallback(json) {
   //   document.getElementById("news").innerHTML = json.result;
   // }
+
+  $.getJSON(
+    "https://newsdata.io/api/1/news?apikey=pub_199957ae6d4a4143dddf1a9285132b995f457&q=soccer",
+    function (data) {
+      const container = $("#container");
+      let html = "";
+
+      data.forEach((item) => {
+        html += `<p>${item.name} - ${item.description}</p>`;
+      });
+
+      container.html(html);
+    }
+  );
 </script>
