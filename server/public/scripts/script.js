@@ -1,14 +1,17 @@
 import { requestOptions } from './../config/config.js';
 
 $(function () {
-  if (!localStorage.getItem('idToken')) {
+  if (!localStorage.getItem('user')) {
     // Redirect the user to the login page if they are not logged in
     window.location.href = '/';
   }
 
+  console.log('User is logged in');
+
   $('#signout-button').click(() => {
+    console.log('Signing out...');
     // Clear the user's ID token from local storage
-    localStorage.removeItem('idToken');
+    localStorage.removeItem('user');
     // Redirect the user to the login page
     window.location.href = '/';
   });

@@ -32,7 +32,6 @@ const useAuthentication = (auth) => {
         );
         user = userCredential.user;
         // Store the user's ID token in local storage
-        localStorage.setItem('idToken', user.qa);
         localStorage.setItem('user', JSON.stringify(user));
       } else if (option === authOptions.signUp) {
         const userCredential = await createUserWithEmailAndPassword(
@@ -42,7 +41,6 @@ const useAuthentication = (auth) => {
         );
         user = userCredential.user;
         // Store the user's ID token in local storage
-        localStorage.setItem('idToken', user.qa);
         localStorage.setItem('user', JSON.stringify(user));
       } else if (option === authOptions.sendPasswordResetEmail) {
         await sendPasswordResetEmail(auth, email);
