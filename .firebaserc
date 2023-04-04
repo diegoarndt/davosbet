@@ -1,7 +1,5 @@
 {
   "projects": {
-    "production": "davosbet"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "wddm-121-0na"
+  }
 }

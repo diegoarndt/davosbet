@@ -11,7 +11,13 @@ $(function () {
     localStorage.removeItem('idToken');
     // Redirect the user to the login page
     window.location.href = '/';
-  });  
+  });
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  const displayName = user.displayName;
+  if (displayName) {
+    $('#dropdownMenuButton').text(displayName);
+  }
 
   generateEventDates();
   getSoccerFixtures();

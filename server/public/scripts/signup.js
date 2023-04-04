@@ -1,12 +1,22 @@
+import { auth, firestore, storage } from './firebaseInit.js';
 import useAuthentication from '../hooks/useAuthentication.js';
 
-const auth = useAuthentication();
+const authHook = useAuthentication(auth);
+
+const uploadProfilePicture = async (file, uid) => {
+  const storageRef = storage.ref();
+  const profilePictureRef = storageRef.child(`profilePictures/${uid}`);
+
+  const snapshot = await profilePictureRef.put(file);
+  const downloadURL = await snapshot.ref.getDownloadURL();
+
+  return downloadURL;
+};
 
 $(document).ready(() => {
   $('form').submit(async (e) => {
     e.preventDefault();
 
-    // Retrieve form inputs
     const firstName = $('#inputFirstName').val();
     const lastName = $('#inputLastName').val();
     const age = $('#inputAge').val();
@@ -15,30 +25,52 @@ $(document).ready(() => {
     const email = $('#inputEmail').val();
     const password = $('#inputPassword').val();
     const confirmPassword = $('#inputConfirmPassword').val();
-    const profilePicture = document.getElementById('inputProfilePicture')
-      .files[0];
 
     if (password !== confirmPassword) {
-      // Display error message for non-matching passwords
-      auth.displayErrorMessage('Passwords do not match.');
+      authHook.displayErrorMessage('Passwords do not match');
       return;
     }
 
-    // Sign up user
-    const profileCreated = await auth.createUserProfile(
-      `${firstName}${lastName}${age}}`,
-      firstName,
-      lastName,
-      age,
-      occupation,
-      dateOfBirth,
-      profilePicture
-    );
-    if (profileCreated) {
-      window.location.href = '/pages/home.html';
-    } else {
-      // Display an error message to the user
-      auth.displayErrorMessage('Error creating user profile.');
+    try {
+      const user = await authHook.handleAuthentication(
+        email,
+        password,
+        authHook.authOptions.signUp
+      );
+
+      if (user) {
+        // Set the display name
+        const displayName = `${firstName} ${lastName}`;
+        await auth.currentUser.updateProfile({ displayName: displayName });
+
+        // Upload the profile picture and get its URL
+        const profilePictureFile = $('#inputProfilePicture').get(0).files[0];
+
+        let profilePictureURL = '';
+        if (profilePictureFile) {
+          profilePictureURL = await uploadProfilePicture(
+            profilePictureFile,
+            user.uid
+          );
+        }
+
+        // Add user information to Firestore
+        const userCollection = firestore.collection('users');
+        await userCollection.add({
+          uid: user.uid,
+          firstName: firstName,
+          lastName: lastName,
+          age: age,
+          occupation: occupation,
+          dateOfBirth: dateOfBirth,
+          email: email,
+          profilePictureURL: profilePictureURL,
+        });
+
+        window.location.href = '/pages/home.html';
+      }
+    } catch (error) {
+      console.error('Error during sign-up:', error);
     }
   });
 });
