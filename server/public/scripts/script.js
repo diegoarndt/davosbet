@@ -9,7 +9,6 @@ $(function () {
   console.log('User is logged in');
 
   $('#signout-button').click(() => {
-    console.log('Signing out...');
     // Clear the user's ID token from local storage
     localStorage.removeItem('user');
     // Redirect the user to the login page
