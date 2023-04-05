@@ -110,7 +110,7 @@ const getTeam = (query) => {
         `<span class="text-white">Venue: </span>${data.response[0].venue.name}`
       );
       $("#capacity").html(
-        `<span class="text-white">Capacity: </span>${data.response[0].venue.capacity}<span class="text-warning"> Seats</span>`
+        `<span class="text-white">Capacity: </span>${data.response[0].venue.capacity}<span class="text-warning"> People</span>`
       );
       $("#logo").attr("src", data.response[0].venue.image);
     })
