@@ -15,7 +15,6 @@ const uploadProfilePicture = async (file, uid) => {
 
 $(document).ready(async () => {
   // Get the current user and populate the form
-  const currentUser = auth.currentUser;
   const localUser = JSON.parse(localStorage.getItem('user'));
   const uid = localUser.uid;
 
@@ -29,7 +28,7 @@ $(document).ready(async () => {
 
   $('#inputFirstName').val(localUser.displayName.split(' ')[0]);
   $('#inputLastName').val(localUser.displayName.split(' ')[1]);
-  $('#inputEmail').val(currentUser.email);
+  $('#inputEmail').val(localUser.email);
 
   const userCollection = firestore.collection('users');
   userCollection
@@ -51,7 +50,7 @@ $(document).ready(async () => {
   // Get the profile picture URL and display it
   const storageRef = storage.ref();
   const profilePictureRef = storageRef.child(
-    `profilePictures/${currentUser.uid}`
+    `profilePictures/${localUser.uid}`
   );
   profilePictureRef
     .getDownloadURL()
