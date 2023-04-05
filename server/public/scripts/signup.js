@@ -54,9 +54,23 @@ $(document).ready(() => {
           );
         }
 
+        function generateId(length) {
+          let result = '';
+          const characters =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+          const charactersLength = characters.length;
+          for (let i = 0; i < length; i++) {
+            result += characters.charAt(
+              Math.floor(Math.random() * charactersLength)
+            );
+          }
+          return result;
+        }
+
         // Add user information to Firestore
         const userCollection = firestore.collection('users');
-        await userCollection.add({
+        const shortId = generateId(6); // Generate a 6-character ID
+        await userCollection.doc(shortId).set({
           uid: user.uid,
           firstName: firstName,
           lastName: lastName,
