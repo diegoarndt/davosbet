@@ -41,18 +41,23 @@ $(document).on('click', '.country', function (e) {
   getSoccerFixtures();
 });
 
-$(document).on('click', '#search-engine', function (e) {
-  e.preventDefault();
-  $('#includedContent').load(`/pages/searchResult.html`);
+$(document).on('click keydown', '#search-engine, #query', function (e) {
+  if (
+    e.type === 'click' ||
+    (e.type === 'keydown' && e.key === 'Enter' && e.target.id === 'query')
+  ) {
+    const query = document.getElementById('query').value;
+    if (query) {
+      e.preventDefault();
+      $('#includedContent').load(`/pages/searchResult.html`);
 
-  $.get('/pages/searchResult.html', function (data) {
-    $('.col-9').html(data);
-  });
+      $.get('/pages/searchResult.html', function (data) {
+        $('.col-9').html(data);
+      });
 
-  const query = document.getElementById('query').value;
-
-  getTeam(query);
-  console.log(query);
+      getTeam(query);
+    }
+  }
 });
 
 const generateEventDates = () => {
@@ -98,13 +103,21 @@ const getTeam = (query) => {
       const data = result;
 
       if (data.results === 0) {
-        $('#team').text('No team found or API is down :(');
+        $('#team').html(
+          `<span class="text-white">No team found or API is down :(</span>`
+        );
         $('#stadium-section').hide();
         return;
       }
-      $('#team').html(`<span class="text-white">Team: </span>${data.response[0].team.name}`);
-      $('#venue').html(`<span class="text-white">Venue: </span>${data.response[0].venue.name}`);
-      $('#capacity').html(`<span class="text-white">Capacity: </span>${data.response[0].venue.capacity}<span class="text-white"> seats</span>`);
+      $('#team').html(
+        `<span class="text-white">Team: </span>${data.response[0].team.name}`
+      );
+      $('#venue').html(
+        `<span class="text-white">Venue: </span>${data.response[0].venue.name}`
+      );
+      $('#capacity').html(
+        `<span class="text-white">Capacity: </span>${data.response[0].venue.capacity}<span class="text-white"> seats</span>`
+      );
       $('#logo').attr('src', data.response[0].venue.image);
     })
     .catch((error) => console.log('error', error));
