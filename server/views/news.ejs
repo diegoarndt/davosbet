@@ -2,28 +2,50 @@
   <h1 class="text-warning mb-5">News</h1>
   <p class="mb-4 text-white">Keep up to date with the latest sports news</p>
 
-  <a
+  <!-- <button>Click to load News</button> -->
+  <!-- <a
     href="https://newsdata.io/api/1/news?apikey=pub_199957ae6d4a4143dddf1a9285132b995f457&q=soccer"
     id="myLink"
     class="mb-4 text-white"
     >Click to load News</a
-  >
-  <div class="mb-4 text-white" id="myDiv"></div>
+  > -->
+  <div class="mb-4 text-white" id="my-id"></div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $(document).ready(function () {
-      $("#myLink").click(function (event) {
-        event.preventDefault(); // prevent the link from being followed
-        var url = $(this).attr("href"); // get the URL from the link
-        $.getJSON(url, function (data) {
-          // parse the JSON data
-          var parsedData = JSON.stringify(data);
-          // display the parsed data in the div
-          $("#myDiv").html(parsedData);
+    // $(document).ready(function () {
+    //   $("#myLink").click(function (event) {
+    //     event.preventDefault(); // prevent the link from being followed
+    //     var url = $(this).attr("href"); // get the URL from the link
+    //     $.getJSON(url, function (data) {
+    //       // parse the JSON data
+    //       var parsedData = JSON.stringify(data);
+    //       // display the parsed data in the div
+    //       $("#myDiv").html(parsedData);
+    //     });
+    //   });
+    // });
+
+    const url =
+      "https://newsdata.io/api/1/news?apikey=pub_199957ae6d4a4143dddf1a9285132b995f457&q=soccer"; // replace with your URL
+    const container = document.querySelector("#my-id");
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        data.results.forEach((item) => {
+          const a = document.createElement("a");
+          a.href = item.link;
+          const h2 = document.createElement("h2");
+          h2.textContent = item.title;
+          const p = document.createElement("p");
+          p.textContent = item.description;
+          a.appendChild(h2);
+          container.appendChild(a);
+          container.appendChild(p);
         });
-      });
-    });
+      })
+      .catch((error) => console.error(error));
   </script>
 
   <!-- TO BE DONE by David -->
