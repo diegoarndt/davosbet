@@ -1,6 +1,30 @@
 <div class="d-flex flex-column align-items-center p-5">
-    <h1 class="text-warning mb-5">News</h1>
-    <p class="mb-4 text-white">Keep up to date with the latest sports news</p>
+  <h1 class="text-warning mb-5">News</h1>
+  <p class="mb-4 text-white">Keep up to date with the latest sports news</p>
 
-    <!-- TO BE DONE by David -->
+  <a
+    href="https://newsdata.io/api/1/news?apikey=pub_199957ae6d4a4143dddf1a9285132b995f457&q=soccer"
+    id="myLink"
+    class="mb-4 text-white"
+    >Click to load News</a
+  >
+  <div class="mb-4 text-white" id="myDiv"></div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#myLink").click(function (event) {
+        event.preventDefault(); // prevent the link from being followed
+        var url = $(this).attr("href"); // get the URL from the link
+        $.getJSON(url, function (data) {
+          // parse the JSON data
+          var parsedData = JSON.stringify(data);
+          // display the parsed data in the div
+          $("#myDiv").html(parsedData);
+        });
+      });
+    });
+  </script>
+
+  <!-- TO BE DONE by David -->
 </div>
