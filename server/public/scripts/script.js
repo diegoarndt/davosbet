@@ -1,54 +1,59 @@
-import { requestOptions } from './../config/config.js';
+import { requestOptions } from "./../config/config.js";
 
 $(function () {
-  if (!localStorage.getItem('user')) {
+  if (!localStorage.getItem("user")) {
     // Redirect the user to the login page if they are not logged in
-    window.location.href = '/';
+    window.location.href = "/";
   }
 
-  console.log('User is logged in');
+  console.log("User is logged in");
 
-  $('#signout-button').click(() => {
+  $("#signout-button").click(() => {
     // Clear the user's ID token from local storage
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     // Redirect the user to the login page
-    window.location.href = '/';
+    window.location.href = "/";
   });
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
   const displayName = user.displayName;
   if (displayName) {
-    $('#dropdownMenuButton').text(displayName);
+    $("#dropdownMenuButton").text(displayName);
   }
 
   generateEventDates();
   getSoccerFixtures();
 
-  $('#sideMenu').load(`/pages/soccerSideMenu.html`);
-  $('#includedContent').load(`/pages/fixtures.html`);
+  $("#sideMenu").load(`/pages/soccerSideMenu.html`);
+  $("#includedContent").load(`/pages/fixtures.html`);
 });
 
-$(document).on('click', '.event-date', function () {
-  const selectedDate = $(this).data('date');
+$(document).on("click", ".event-date", function () {
+  const selectedDate = $(this).data("date");
 
   getSoccerFixtures(selectedDate);
 });
 
-$(document).on('click', '.country', function (e) {
-  $('.country.selected').removeClass('selected');
-  $(e.currentTarget).addClass('selected');
+$(document).on("click", ".country", function (e) {
+  $(".country.selected").removeClass("selected");
+  $(e.currentTarget).addClass("selected");
 
   getSoccerFixtures();
 });
 
-$(document).on('click', '#search-engine', function (e) {
-  e.preventDefault();
-  $('#includedContent').load(`/pages/searchResult.html`);
-
-  const query = document.getElementById('query').value;
-
-  getTeam(query);
-  console.log(query);
+$(document).on("click keydown", "#search-engine, #query", function (e) {
+  if (
+    e.type === "click" ||
+    (e.type === "keydown" && e.key === "Enter" && e.target.id === "query")
+  ) {
+    const query = document.getElementById("query").value;
+    if (query) {
+      e.preventDefault();
+      $("#includedContent").load(`/pages/searchResult.html`);
+      getTeam(query);
+      console.log(query);
+    }
+  }
 });
 
 const generateEventDates = () => {
@@ -56,11 +61,11 @@ const generateEventDates = () => {
   const qtyOfDays = 7;
 
   for (let i = 0; i < qtyOfDays; i++) {
-    const date = today.add(i, 'day');
-    const formattedDate = date.format('ddd, DD MMM').toUpperCase();
+    const date = today.add(i, "day");
+    const formattedDate = date.format("ddd, DD MMM").toUpperCase();
 
     const listItem = $('<li class="list-inline-item"></li>');
-    const displayDateFormatted = date.format('YYYY-MM-DD');
+    const displayDateFormatted = date.format("YYYY-MM-DD");
 
     if (i === 0) {
       listItem.append(
@@ -74,44 +79,50 @@ const generateEventDates = () => {
           displayDateFormatted +
           '">' +
           formattedDate +
-          '</a>'
+          "</a>"
       );
     }
 
-    $('.event-dates').append(listItem);
+    $(".event-dates").append(listItem);
   }
 
-  $('.event-date').click(function () {
-    $('.event-date.selected').removeClass('selected');
-    $(this).addClass('selected');
+  $(".event-date").click(function () {
+    $(".event-date.selected").removeClass("selected");
+    $(this).addClass("selected");
   });
 };
 
 const getTeam = (query) => {
-  fetch('https://v3.football.api-sports.io/teams?name=' + query, requestOptions)
+  fetch("https://v3.football.api-sports.io/teams?name=" + query, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       const data = result;
 
       if (data.results === 0) {
-        $('#team').text('No team found or API is down :(');
-        $('#stadium-section').hide();
+        $("#team").text("No team found or API is down :(");
+        $("#stadium-section").hide();
         return;
       }
-      $('#team').html(`<span class="text-white">Team: </span>${data.response[0].team.name}`);
-      $('#venue').html(`<span class="text-white">Venue: </span>${data.response[0].venue.name}`);
-      $('#capacity').html(`<span class="text-white">Capacity: </span>${data.response[0].venue.capacity}<span class="text-white"> seats</span>`);
-      $('#logo').attr('src', data.response[0].venue.image);
+      $("#team").html(
+        `<span class="text-white">Team: </span>${data.response[0].team.name}`
+      );
+      $("#venue").html(
+        `<span class="text-white">Venue: </span>${data.response[0].venue.name}`
+      );
+      $("#capacity").html(
+        `<span class="text-white">Capacity: </span>${data.response[0].venue.capacity}<span class="text-white"> seats</span>`
+      );
+      $("#logo").attr("src", data.response[0].venue.image);
     })
-    .catch((error) => console.log('error', error));
+    .catch((error) => console.log("error", error));
 };
 
 const getSoccerFixtures = (
-  date = $('.event-dates').find('.selected').data('date')
+  date = $(".event-dates").find(".selected").data("date")
 ) => {
-  const endpoint = 'fixtures';
-  const league = $('.country.selected').data('id');
-  const season = $('.country.selected').data('season');
+  const endpoint = "fixtures";
+  const league = $(".country.selected").data("id");
+  const season = $(".country.selected").data("season");
 
   console.log(date, league, season);
 
@@ -124,58 +135,58 @@ const getSoccerFixtures = (
       console.log(data);
       addFixturesToPage(data.response);
     })
-    .catch((error) => console.log('error', error));
+    .catch((error) => console.log("error", error));
 };
 
 const addFixturesToPage = (fixtures) => {
   const matches = fixtures;
 
   const countryFlags = {
-    england: 'flag-icon-gb',
-    spain: 'flag-icon-es',
-    italy: 'flag-icon-it',
-    germany: 'flag-icon-de',
-    france: 'flag-icon-fr',
-    netherlands: 'flag-icon-nl',
-    portugal: 'flag-icon-pt',
-    argentina: 'flag-icon-ar',
-    brazil: 'flag-icon-br',
-    usa: 'flag-icon-us',
+    england: "flag-icon-gb",
+    spain: "flag-icon-es",
+    italy: "flag-icon-it",
+    germany: "flag-icon-de",
+    france: "flag-icon-fr",
+    netherlands: "flag-icon-nl",
+    portugal: "flag-icon-pt",
+    argentina: "flag-icon-ar",
+    brazil: "flag-icon-br",
+    usa: "flag-icon-us",
   };
 
-  $('.country-flag').removeClass(function (_, className) {
-    return (className.match(/\bflag-icon-\S+/g) || []).join(' ');
+  $(".country-flag").removeClass(function (_, className) {
+    return (className.match(/\bflag-icon-\S+/g) || []).join(" ");
   });
-  $('.country-flag').addClass(countryFlags[$('.country.selected')[0].name]);
-  $('.league-name').text($('.country.selected').data('league'));
-  $('.country-name').text($('.country.selected')[0].innerText);
+  $(".country-flag").addClass(countryFlags[$(".country.selected")[0].name]);
+  $(".league-name").text($(".country.selected").data("league"));
+  $(".country-name").text($(".country.selected")[0].innerText);
 
   if (matches.length === 0) {
-    $('.matches').html(`
+    $(".matches").html(`
         <div class="d-flex flex-grow-1 justify-content-center align-items-center p-5">
           <span class="text-muted">No matches for today</span>
         </div>
       `);
   } else {
-    $('.matches').empty();
+    $(".matches").empty();
 
     matches.forEach((match) => {
       const homeTeam = match.teams.home.name;
       const awayTeam = match.teams.away.name;
-      const homeScore = match.goals.home ?? '';
-      const awayScore = match.goals.away ?? '';
+      const homeScore = match.goals.home ?? "";
+      const awayScore = match.goals.away ?? "";
 
-      const referee = match.fixture.referee || 'To be defined';
+      const referee = match.fixture.referee || "To be defined";
       const stadium = match.fixture.venue.name;
       const homeLogo = match.teams.home.logo;
       const awayLogo = match.teams.away.logo;
 
       const fixtureDate = dayjs(match.fixture.date);
-      const formattedTime = fixtureDate.format('ddd, MMM DD, hh:mm A');
+      const formattedTime = fixtureDate.format("ddd, MMM DD, hh:mm A");
       const formattedDate = `${fixtureDate
-        .add(1, 'day')
-        .format('ddd, MMM DD')} (Not informed)`;
-      const timeOrDate = match.fixture.date.split('T')[1].startsWith('00:')
+        .add(1, "day")
+        .format("ddd, MMM DD")} (Not informed)`;
+      const timeOrDate = match.fixture.date.split("T")[1].startsWith("00:")
         ? formattedDate
         : formattedTime;
       const date = `${timeOrDate}`;
@@ -199,7 +210,7 @@ const addFixturesToPage = (fixtures) => {
             </div>
           `;
 
-      $('.matches').append(card);
+      $(".matches").append(card);
     });
   }
 };
