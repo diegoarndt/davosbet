@@ -1,63 +1,78 @@
-<form>
-    <div class="form-group">
-        <label for="inputFirstName">First Name</label>
-        <input required type="text" class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
-            id="inputFirstName" autocomplete="off" aria-describedby="firstNameHelp">
-    </div>
-    <div class="form-group">
-        <label for="inputLastName">Last Name</label>
-        <input required type="text" class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
-            id="inputLastName" autocomplete="off" aria-describedby="lastNameHelp">
-    </div>
-    <div class="form-group">
-        <label for="inputAge">Age</label>
-        <input required type="range" class="form-control-range" id="inputAge" min="18" max="100" value="18">
-        <span id="inputAgeValue">18</span>
-    </div>
-    <div class="form-group">
-        <label for="inputOccupation">Occupation</label>
-        <select class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputOccupation">
-            <option>Student</option>
-            <option>Developer</option>
-            <option>Designer</option>
-            <option>Doctor</option>
-            <option>Engineer</option>
-            <option>Teacher</option>
-            <option>Lawyer</option>
-            <option>Designer</option>
-            <option>Writer</option>
-            <option>Musician</option>
-            <option>Entrepreneur</option>
-            <option>Other</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="inputDateOfBirth">Date of Birth</label>
-        <input required type="date" class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
-            id="inputDateOfBirth" autocomplete="off" aria-describedby="dateOfBirthHelp">
-    </div>
-    <div class="form-group">
-        <label for="inputEmail">Email address</label>
-        <input required type="email" class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4"
-            id="inputEmail" autocomplete="off" aria-describedby="emailHelp">
-    </div>
-    <div class="form-group">
-        <label for="inputPassword">Password</label>
-        <input required type="password"
-            class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputPassword">
-    </div>
-    <div class="form-group">
-        <label for="inputConfirmPassword">Confirm Password</label>
-        <input required type="password"
-            class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputConfirmPassword">
-    </div>
-    <div class="form-group">
-        <label for="inputProfilePicture">Profile Picture</label>
-        <div class="custom-file">
-            <input required type="file" class="custom-file-input" id="inputProfilePicture" accept="image/*">
-            <label class="custom-file-label" for="inputProfilePicture">Choose file</label>
+<div class="d-flex flex-column align-items-center p-5">
+    <h1 class="text-warning mb-5">Profile</h1>
+    <form>
+        <div class="form-group">
+            <label class="text-white" for="inputProfilePicture">Profile Picture</label>
+            <div class="profile-picture-container">
+                <img src="" alt="Profile Picture" id="profilePicture" class="profile-picture"
+                    onerror="this.onerror=null; this.src='/assets/no_profile_pic.png'">
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputProfilePicture" accept="image/*">
+                <label class="custom-file-label" for="inputProfilePicture">Choose file</label>
+            </div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-warning btn-block text-white p-2">Create an
-        account</button>
-</form>
+        <div class="form-group">
+            <label class="text-white" for="inputFirstName">First Name</label>
+            <input required type="text"
+                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputFirstName"
+                autocomplete="off" aria-describedby="firstNameHelp">
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="inputLastName">Last Name</label>
+            <input required type="text"
+                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputLastName"
+                autocomplete="off" aria-describedby="lastNameHelp">
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="inputAge">Age</label>
+            <input required type="range" class="form-control-range" id="inputAge" min="18" max="100" value="18">
+            <span class="text-white" id="inputAgeValue">18</span>
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="inputOccupation">Occupation</label>
+            <select class="form-control form-control-sm text-white bg-dark rounded-pill border-0 custom-select"
+                id="inputOccupation">
+                <option>Student</option>
+                <option>Developer</option>
+                <option>Designer</option>
+                <option>Doctor</option>
+                <option>Engineer</option>
+                <option>Teacher</option>
+                <option>Lawyer</option>
+                <option>Designer</option>
+                <option>Writer</option>
+                <option>Musician</option>
+                <option>Entrepreneur</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="inputDateOfBirth">Date of Birth</label>
+            <input required type="date"
+                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputDateOfBirth"
+                autocomplete="off" aria-describedby="dateOfBirthHelp">
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="inputEmail">Email address</label>
+            <input required type="email"
+                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 p-4" id="inputEmail"
+                autocomplete="off" aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-warning btn-block text-white p-2">Update my profile</button>
+    </form>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
+
+<script type="module" src="/scripts/firebaseInit.js"></script>
+<script type="module" src="/scripts/profile.js"></script>

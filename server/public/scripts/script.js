@@ -45,6 +45,10 @@ $(document).on('click', '#search-engine', function (e) {
   e.preventDefault();
   $('#includedContent').load(`/pages/searchResult.html`);
 
+  $.get('/pages/searchResult.html', function (data) {
+    $('.col-9').html(data);
+  });
+
   const query = document.getElementById('query').value;
 
   getTeam(query);

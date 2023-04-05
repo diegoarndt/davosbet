@@ -83,3 +83,28 @@
   text-align: center;
   color: white;
 }
+
+.profile-picture-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 200px;
+}
+
+.profile-picture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.profile-picture-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: #bbb;
+}
