@@ -60,4 +60,12 @@ form {
 .custom-select {
     padding: 0.5rem 1rem;
     border-radius: 25px;
-  }
+}
+
+.col-3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
