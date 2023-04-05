@@ -32,6 +32,11 @@ app.get('/profile', (req, res) => {
     res.render('template', { content: 'profile.ejs' });
   });
 
+// Route for the news page
+app.get('/news', (req, res) => {
+  res.render('template', { content: 'news.ejs' });
+});
+
 // Route for the contact us page
 app.get('/contact-us', (req, res) => {
   res.render('template', { content: 'contact-us.ejs' });
