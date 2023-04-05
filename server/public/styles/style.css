@@ -7,6 +7,7 @@ body {
 
 a {
     color: gray !important;
+    margin-bottom: 1.2rem;
 }
 
 form {
@@ -39,6 +40,10 @@ form {
 .btn {
     font-size: 14px;
     margin-top: 20px;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
 }
 
 .login-form {
