@@ -35,9 +35,15 @@ $(document).on('click', '.event-date', function () {
 });
 
 $(document).on('click', '.country', function (e) {
+  const currentPage = window.location.pathname;
+  const targetPage = '/pages/home.html';
+
+  if (currentPage !== targetPage) {
+    window.location.href = targetPage;
+  }
+
   $('.country.selected').removeClass('selected');
   $(e.currentTarget).addClass('selected');
-
   getSoccerFixtures();
 });
 
