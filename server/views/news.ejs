@@ -1,6 +1,43 @@
 <div class="d-flex flex-column align-items-center p-5">
     <h1 class="text-warning mb-5">News</h1>
-    <p class="mb-4 text-white">Keep up to date with the latest sports news</p>
+    <p class="mb-5 text-white">Keep up to date with the latest sports news</p>
 
-    <!-- TO BE DONE by David -->
+    <div class="mb-4 text-white" id="news-section"></div>
+
+    <button id="next-page-button" class="btn btn-outline-warning text-white">Next Page</button>
 </div>
+
+<script type="module">
+    import { newsApiKey } from "./config/config.js";
+
+    const container = document.querySelector("#news-section");
+    const nextPageButton = document.querySelector("#next-page-button");
+    let nextPageId = '';
+
+    const fetchNews = () => {
+        container.innerHTML = "";
+
+        const url = `https://newsdata.io/api/1/news?apikey=pub_${newsApiKey}&language=en&category=sports&q=soccer&page=${nextPageId}`;
+
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                nextPageId = data.nextPage;
+                data.results.forEach((item) => {
+                    const a = document.createElement("a");
+                    a.href = item.link;
+                    const h2 = document.createElement("h5");
+                    h2.textContent = item.title;
+                    const p = document.createElement("p");
+                    p.textContent = item.description;
+                    a.appendChild(h2);
+                    container.appendChild(a);
+                    container.appendChild(p);
+                });
+            })
+            .catch((error) => console.error(error));
+    }
+
+    nextPageButton.addEventListener("click", fetchNews);
+    fetchNews();
+</script>
