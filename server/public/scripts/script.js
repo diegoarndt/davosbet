@@ -41,18 +41,23 @@ $(document).on('click', '.country', function (e) {
   getSoccerFixtures();
 });
 
-$(document).on('click', '#search-engine', function (e) {
-  e.preventDefault();
-  $('#includedContent').load(`/pages/searchResult.html`);
+$(document).on('click keydown', '#search-engine, #query', function (e) {
+  if (
+    e.type === 'click' ||
+    (e.type === 'keydown' && e.key === 'Enter' && e.target.id === 'query')
+  ) {
+    const query = document.getElementById('query').value;
+    if (query) {
+      e.preventDefault();
+      $('#includedContent').load(`/pages/searchResult.html`);
 
-  $.get('/pages/searchResult.html', function (data) {
-    $('.col-9').html(data);
-  });
+      $.get('/pages/searchResult.html', function (data) {
+        $('.col-9').html(data);
+      });
 
-  const query = document.getElementById('query').value;
-
-  getTeam(query);
-  console.log(query);
+      getTeam(query);
+    }
+  }
 });
 
 const generateEventDates = () => {
