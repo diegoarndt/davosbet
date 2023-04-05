@@ -27,8 +27,8 @@ $(document).ready(async () => {
     console.log('User not found');
   }
 
-  $('#inputFirstName').val(currentUser.displayName.split(' ')[0]);
-  $('#inputLastName').val(currentUser.displayName.split(' ')[1]);
+  $('#inputFirstName').val(localUser.displayName.split(' ')[0]);
+  $('#inputLastName').val(localUser.displayName.split(' ')[1]);
   $('#inputEmail').val(currentUser.email);
 
   const userCollection = firestore.collection('users');
