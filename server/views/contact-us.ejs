@@ -1,63 +1,91 @@
 <div class="d-flex flex-column align-items-center h-100 p-5">
-    <h1 class="text-warning mb-5">Contact Us</h1>
-    <ul class="list-unstyled" style="color: white">
-        <li>
-            <i class="fas fa-map-marker-alt"></i> 205 Humber College Blvd,
-            Etobicoke, ON M9W 6V3
-        </li>
-        <li><i class="fas fa-envelope"></i> contact@davosbet.com</li>
-        <li><i class="fas fa-phone"></i> (416) 555-1234</li>
-    </ul>
+  <h1 class="text-warning mb-5">Contact Us</h1>
+  <ul class="list-unstyled" style="color: white">
+    <li>
+      <i class="fas fa-map-marker-alt"></i> 205 Humber College Blvd, Etobicoke,
+      ON M9W 6V3
+    </li>
+    <li><i class="fas fa-envelope"></i> contact@davosbet.com</li>
+    <li><i class="fas fa-phone"></i> (416) 555-1234</li>
+  </ul>
 
-    <h3 class="text-warning mt-5">Follow Us</h3>
-    <p style="color: white">
-        Stay up to date with our latest news and updates by following us on
-        social media:
-    </p>
-    <ul class="list-inline">
-        <li class="list-inline-item">
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook" style="color: white"></i></a>
-        </li>
-        <li class="list-inline-item">
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter" style="color: white"></i></a>
-        </li>
-        <li class="list-inline-item">
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram" style="color: white"></i></a>
-        </li>
-        <li class="list-inline-item">
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin" style="color: white"></i></a>
-        </li>
-    </ul>
+  <h3 class="text-warning mt-5">Follow Us</h3>
+  <p style="color: white">
+    Stay up to date with our latest news and updates by following us on social
+    media:
+  </p>
+  <ul class="list-inline">
+    <li class="list-inline-item">
+      <a href="https://facebook.com" target="_blank"
+        ><i class="fab fa-facebook" style="color: white"></i
+      ></a>
+    </li>
+    <li class="list-inline-item">
+      <a href="https://twitter.com" target="_blank"
+        ><i class="fab fa-twitter" style="color: white"></i
+      ></a>
+    </li>
+    <li class="list-inline-item">
+      <a href="https://instagram.com" target="_blank"
+        ><i class="fab fa-instagram" style="color: white"></i
+      ></a>
+    </li>
+    <li class="list-inline-item">
+      <a href="https://linkedin.com" target="_blank"
+        ><i class="fab fa-linkedin" style="color: white"></i
+      ></a>
+    </li>
+  </ul>
 
-    <h3 class="text-warning mt-5">Get in Touch</h3>
-    <p style="color: white">
-        Fill out the form below to get in touch with us. We'll get back to you
-        as soon as possible.
-    </p>
-    <form class="w-50">
-        <div class="form-group">
-            <label for="name" style="color: white">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your name" required />
-        </div>
-        <div class="form-group">
-            <label for="email" style="color: white">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email" required />
-        </div>
-        <div class="form-group">
-            <label for="message" style="color: white">Message</label>
-            <textarea class="form-control" id="message" rows="5" placeholder="Enter your message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-warning float-right" id="submit-btn">
-            Submit
-        </button>
-    </form>
-    <div id="popup-message" style="display: none; color: white; padding: 5px; margin: 10px">
-        Thank you for contacting us. We will get back to you soon.
+  <h3 class="text-warning mt-5">Get in Touch</h3>
+  <p style="color: white">
+    Fill out the form below to get in touch with us. We'll get back to you as
+    soon as possible.
+  </p>
+  <form class="w-50">
+    <div class="form-group">
+      <label for="name" style="color: white">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Enter your name"
+        required
+      />
     </div>
-
+    <div class="form-group">
+      <label for="email" style="color: white">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Enter your email"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="message" style="color: white">Message</label>
+      <textarea
+        class="form-control"
+        id="message"
+        rows="5"
+        placeholder="Enter your message"
+        required
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-warning float-right" id="submit-btn">
+      Submit
+    </button>
+  </form>
+  <div
+    id="popup-message"
+    style="display: none; color: white; padding: 5px; margin: 10px"
+  >
+    Thank you for contacting us. We will get back to you soon.
+  </div>
 </div>
 
-<script>
+<!-- <script>
     const form = document.querySelector("form");
     const submitBtn = document.querySelector("#submit-btn");
     const popupMessage = document.querySelector("#popup-message");
@@ -78,4 +106,55 @@
             popupMessage.style.display = "none";
         }, 5000);
     });
+</script> -->
+
+<!-- this code will implement the email service.. -->
+
+<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script>
+  (function () {
+    emailjs.init("c-RlWV4po2dgg7cga");
+  })();
+
+  const form = document.querySelector("form");
+  const popupMessage = document.querySelector("#popup-message");
+  let timeoutId;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const nameInput = document.querySelector("#name");
+    const emailInput = document.querySelector("#email");
+    const messageInput = document.querySelector("#message");
+
+    const templateParams = {
+      from_name: nameInput.value,
+      from_email: emailInput.value,
+      message: messageInput.value,
+    };
+
+    emailjs
+      .send("service_bljz9kj", "template_lyqlwev", templateParams)
+      .then(
+        function (response) {
+          console.log("SUCCESS!", response.status, response.text);
+          popupMessage.textContent =
+            "Thank you for contacting us. We will get back to you soon.";
+        },
+        function (error) {
+          console.log("FAILED...", error);
+          popupMessage.textContent =
+            "Error sending message. Please try again later.";
+        }
+      )
+      .finally(() => {
+        popupMessage.style.display = "block";
+        form.reset();
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+          popupMessage.style.display = "none";
+        }, 5000);
+      });
+  });
 </script>
