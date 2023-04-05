@@ -3,9 +3,12 @@
     <form>
         <div class="form-group">
             <label class="text-white" for="inputProfilePicture">Profile Picture</label>
-            <!--show profile picture here-->
+            <div class="profile-picture-container">
+                <img src="" alt="Profile Picture" id="profilePicture" class="profile-picture"
+                    onerror="this.onerror=null; this.src='/assets/no_profile_pic.png'">
+            </div>
             <div class="custom-file">
-                <input required type="file" class="custom-file-input" id="inputProfilePicture" accept="image/*">
+                <input type="file" class="custom-file-input" id="inputProfilePicture" accept="image/*">
                 <label class="custom-file-label" for="inputProfilePicture">Choose file</label>
             </div>
         </div>
@@ -28,8 +31,7 @@
         </div>
         <div class="form-group">
             <label class="text-white" for="inputOccupation">Occupation</label>
-            <select
-                class="form-control form-control-sm text-white bg-dark rounded-pill border-0 custom-select"
+            <select class="form-control form-control-sm text-white bg-dark rounded-pill border-0 custom-select"
                 id="inputOccupation">
                 <option>Student</option>
                 <option>Developer</option>

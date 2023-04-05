@@ -13,21 +13,57 @@ const uploadProfilePicture = async (file, uid) => {
   return downloadURL;
 };
 
-$(document).ready(() => {
+$(document).ready(async () => {
   // Get the current user and populate the form
   const currentUser = auth.currentUser;
+  const localUser = JSON.parse(localStorage.getItem('user'));
+  const uid = localUser.uid;
+
+  const userDoc = await firestore
+    .collection('users')
+    .where('uid', '==', uid)
+    .get();
+  if (userDoc.empty) {
+    console.log('User not found');
+  }
 
   $('#inputFirstName').val(currentUser.displayName.split(' ')[0]);
   $('#inputLastName').val(currentUser.displayName.split(' ')[1]);
-  $('#inputAge').val(21); // TODO: Retrieve from Firestore
-  $('#inputOccupation').val('Student'); // TODO: Retrieve from Firestore
-  $('#inputDateOfBirth').val('2000-01-01'); // TODO: Retrieve from Firestore
   $('#inputEmail').val(currentUser.email);
 
-  const profilePictureURL = currentUser.photoURL;
-  if (profilePictureURL) {
-    $('#profilePicture').attr('src', profilePictureURL);
-  }
+  const userCollection = firestore.collection('users');
+  userCollection
+    .doc(userDoc.docs[0]?.id)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        $('#inputAge').val(data.age);
+        $('#inputAgeValue').text(data.age);
+        $('#inputOccupation').val(data.occupation);
+        $('#inputDateOfBirth').val(data.dateOfBirth);
+      }
+    })
+    .catch((error) => {
+      console.error('Error getting user information from Firestore:', error);
+    });
+
+  // Get the profile picture URL and display it
+  const storageRef = storage.ref();
+  const profilePictureRef = storageRef.child(
+    `profilePictures/${currentUser.uid}`
+  );
+  profilePictureRef
+    .getDownloadURL()
+    .then((url) => {
+      $('#profilePicture').attr('src', url);
+    })
+    .catch((error) => {
+      console.error(
+        'Error getting profile picture or the user has not defined it yet:',
+        error
+      );
+    });
 
   $('form').submit(async (e) => {
     e.preventDefault();
