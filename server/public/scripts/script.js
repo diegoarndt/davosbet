@@ -98,11 +98,10 @@ const getTeam = (query) => {
         $('#stadium-section').hide();
         return;
       }
-      $('#team').text('Team:' + data.response[0].team.name);
-      $('#venue').text('Venue: ' + data.response[0].venue.name);
-      $('#capacity').text('Capacity: ' + data.response[0].venue.capacity + ' seats');
+      $('#team').html(`<span class="text-white">Team: </span>${data.response[0].team.name}`);
+      $('#venue').html(`<span class="text-white">Venue: </span>${data.response[0].venue.name}`);
+      $('#capacity').html(`<span class="text-white">Capacity: </span>${data.response[0].venue.capacity}<span class="text-white"> seats</span>`);
       $('#logo').attr('src', data.response[0].venue.image);
-      console.log(data);
     })
     .catch((error) => console.log('error', error));
 };
