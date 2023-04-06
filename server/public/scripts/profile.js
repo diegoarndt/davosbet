@@ -17,52 +17,62 @@ $(document).ready(async () => {
   // Get the current user and populate the form
   const localUser = JSON.parse(localStorage.getItem('user'));
   const uid = localUser.uid;
+  const userCollection = firestore.collection('users');
 
   const userDoc = await firestore
     .collection('users')
     .where('uid', '==', uid)
     .get();
+
   if (userDoc.empty) {
     console.log('User not found');
   }
 
-  $('#inputFirstName').val(localUser.displayName.split(' ')[0]);
-  $('#inputLastName').val(localUser.displayName.split(' ')[1]);
-  $('#inputEmail').val(localUser.email);
+  $('#inputProfilePicture').on('change', function () {
+    const fileName = $(this).get(0).files[0]?.name || 'Choose file';
+    $(this).next('.custom-file-label').text(fileName);
+  });
 
-  const userCollection = firestore.collection('users');
-  userCollection
-    .doc(userDoc.docs[0]?.id)
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        const data = doc.data();
-        $('#inputAge').val(data.age);
-        $('#inputAgeValue').text(data.age);
-        $('#inputOccupation').val(data.occupation);
-        $('#inputDateOfBirth').val(data.dateOfBirth);
-      }
-    })
-    .catch((error) => {
-      console.error('Error getting user information from Firestore:', error);
-    });
+  const getUserInfo = () => {
+    $('#inputFirstName').val(localUser.displayName.split(' ')[0]);
+    $('#inputLastName').val(localUser.displayName.split(' ')[1]);
+    $('#inputEmail').val(localUser.email);
 
-  // Get the profile picture URL and display it
-  const storageRef = storage.ref();
-  const profilePictureRef = storageRef.child(
-    `profilePictures/${localUser.uid}`
-  );
-  profilePictureRef
-    .getDownloadURL()
-    .then((url) => {
-      $('#profilePicture').attr('src', url);
-    })
-    .catch((error) => {
-      console.error(
-        'Error getting profile picture or the user has not defined it yet:',
-        error
-      );
-    });
+    userCollection
+      .doc(userDoc.docs[0]?.id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          $('#inputAge').val(data.age);
+          $('#inputAgeValue').text(data.age);
+          $('#inputOccupation').val(data.occupation);
+          $('#inputDateOfBirth').val(data.dateOfBirth);
+        }
+      })
+      .catch((error) => {
+        console.error('Error getting user information from Firestore:', error);
+      });
+
+    // Get the profile picture URL and display it
+    const storageRef = storage.ref();
+    const profilePictureRef = storageRef.child(
+      `profilePictures/${localUser.uid}`
+    );
+    profilePictureRef
+      .getDownloadURL()
+      .then((url) => {
+        $('#profilePicture').attr('src', url);
+      })
+      .catch((error) => {
+        console.error(
+          'Error getting profile picture or the user has not defined it yet:',
+          error
+        );
+      });
+  };
+
+  getUserInfo();
 
   $('form').submit(async (e) => {
     e.preventDefault();
@@ -92,11 +102,7 @@ $(document).ready(async () => {
       }
 
       // Update the user information in Firestore
-      const userDoc = await firestore
-        .collection('users')
-        .doc(auth.currentUser.uid)
-        .get();
-      await userDoc.ref.update({
+      userCollection.doc(userDoc.docs[0]?.id).update({
         firstName: firstName,
         lastName: lastName,
         age: age,
@@ -105,11 +111,11 @@ $(document).ready(async () => {
         email: email,
         profilePictureURL: profilePictureURL,
       });
-
-      authHook.displaySuccessMessage('Profile updated successfully');
+      authHook.displayMessage('Profile updated successfully', 'success');
+      getUserInfo();
     } catch (error) {
       console.error('Error updating profile:', error);
-      authHook.displayErrorMessage('Error updating profile');
+      authHook.displayMessage('Error updating profile', 'danger');
     }
   });
 });
