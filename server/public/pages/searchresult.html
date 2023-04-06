@@ -1,26 +1,77 @@
-<div class="d-flex flex-column align-items-center p-5">
-  <h1 class="text-warning mb-5">Search engine</h1>
-  <div class="align-items-center text-center">
-    <h4 class="text-white">
-      <span id="team" class="text-warning"></span>
-    </h4>
-    <h4 class="text-white">
-      <span id="venue" class="text-warning"></span>
-    </h4>
-    <h4 class="text-white">
-      <span id="capacity" class="text-warning"></span>
-    </h4>
-    <div id="stadium-section">
-      <div class="d-flex justify-content-center align-items-center flex-column">
-        <h4 class="text-white">Stadium Picture:</h4>
-        <img id="logo" alt="stadium picture" style="
-                    width: 500px;
-                    height: 300px;
-                    object-fit: cover;
-                    border: 5px solid #fff;
-                    box-shadow: 0 0 20px rgb(247, 192, 11);
-                  " />
+<div class="col-12 p-0">
+  <nav class="navbar navbar-expand-md bg-darkgray pt-5 pb-5 mb-3">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item d-flex">
+          <button type="button" class="btn d-flex align-items-center text-white m-0 border-0 selected" name="football">
+            <i class="fas fa-futbol m-0 p-3"></i><span class="h5 m-0 mr-3">Soccer</span>
+          </button>
+        </li>
+        <li class="nav-item d-flex">
+          <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" disabled name="kii">
+            <i class="fas fa-football m-0 p-3"></i><span class="h5 m-0 mr-3">NFL</span>
+          </button>
+        </li>
+        <li class="nav-item d-flex">
+          <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" disabled name="kk">
+            <i class="fas fa-basketball-ball m-0 p-3"></i><span class="h5 m-0 mr-3">NBA</span>
+          </button>
+        </li>
+        <li class="nav-item d-flex">
+          <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" disabled name="ll">
+            <i class="fas fa-hockey-puck m-0 p-3"></i><span class="h5 m-0 mr-3">NHL</span>
+          </button>
+        </li>
+        <li class="nav-item d-flex">
+          <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" disabled name="kkp">
+            <i class="fas fa-baseball-bat-ball m-0 p-3"></i><span class="h5 m-0 mr-3">MLB</span>
+          </button>
+        </li>
+        <li class="nav-item d-flex">
+          <button type="button" class="btn d-flex align-items-center text-white m-0 border-0" disabled name="po">
+            <i class="fas fa-volleyball-ball m-0 p-3"></i><span class="h5 m-0 mr-3">NVA</span>
+          </button>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="dropdown">
+          <button class="btn btn-warning text-white mr-3 align-self-center dropdown-toggle" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Welcome
+          </button>
+          <div class="dropdown-menu dropdown-menu-right custom-dropdown" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/profile">Profile</a>
+            <a class="dropdown-item" id="signout-button" href="#">Sign Out</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="d-flex flex-column align-items-center p-5">
+    <h1 class="text-warning mb-5">Search engine</h1>
+    <div class="align-items-center text-center">
+      <h4 class="text-white">
+        <span id="team" class="text-warning"></span>
+      </h4>
+      <h4 class="text-white">
+        <span id="venue" class="text-warning"></span>
+      </h4>
+      <h4 class="text-white">
+        <span id="capacity" class="text-warning"></span>
+      </h4>
+      <div id="stadium-section">
+        <div class="d-flex justify-content-center align-items-center flex-column">
+          <h4 class="text-white">Stadium Picture:</h4>
+          <img id="logo" alt="stadium picture" style="
+                      width: 500px;
+                      height: 300px;
+                      object-fit: cover;
+                      border: 5px solid #fff;
+                      box-shadow: 0 0 20px rgb(247, 192, 11);
+                    " />
+        </div>
       </div>
     </div>
   </div>
+</div>
 </div>
