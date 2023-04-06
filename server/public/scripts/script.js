@@ -1,6 +1,26 @@
 import { requestOptions } from './../config/config.js';
 
-$(function() {
+$(function () {
+  if (!localStorage.getItem('user')) {
+    // Redirect the user to the login page if they are not logged in
+    window.location.href = '/';
+  }
+
+  console.log('User is logged in');
+
+  $('#signout-button').click(() => {
+    // Clear the user's ID token from local storage
+    localStorage.removeItem('user');
+    // Redirect the user to the login page
+    window.location.href = '/';
+  });
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  const displayName = user.displayName;
+  if (displayName) {
+    $('#dropdownMenuButton').text(displayName);
+  }
+
   generateEventDates();
   getSoccerFixtures();
 
@@ -15,10 +35,35 @@ $(document).on('click', '.event-date', function () {
 });
 
 $(document).on('click', '.country', function (e) {
+  const currentPage = window.location.pathname;
+  const targetPage = '/pages/home.html';
+
+  if (currentPage !== targetPage) {
+    window.location.href = targetPage;
+  }
+
   $('.country.selected').removeClass('selected');
   $(e.currentTarget).addClass('selected');
-
   getSoccerFixtures();
+});
+
+$(document).on('click keydown', '#search-engine, #query', function (e) {
+  if (
+    e.type === 'click' ||
+    (e.type === 'keydown' && e.key === 'Enter' && e.target.id === 'query')
+  ) {
+    const query = document.getElementById('query').value;
+    if (query) {
+      e.preventDefault();
+      $('#includedContent').load(`/pages/searchResult.html`);
+
+      $.get('/pages/searchResult.html', function (data) {
+        $('.col-9').html(data);
+      });
+
+      getTeam(query);
+    }
+  }
 });
 
 const generateEventDates = () => {
@@ -55,6 +100,33 @@ const generateEventDates = () => {
     $('.event-date.selected').removeClass('selected');
     $(this).addClass('selected');
   });
+};
+
+const getTeam = (query) => {
+  fetch('https://v3.football.api-sports.io/teams?name=' + query, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      const data = result;
+
+      if (data.results === 0) {
+        $('#team').html(
+          `<span class="text-white">No team found or API is down :(</span>`
+        );
+        $('#stadium-section').hide();
+        return;
+      }
+      $('#team').html(
+        `<span class="text-white">Team: </span>${data.response[0].team.name}`
+      );
+      $('#venue').html(
+        `<span class="text-white">Venue: </span>${data.response[0].venue.name}`
+      );
+      $('#capacity').html(
+        `<span class="text-white">Capacity: </span>${data.response[0].venue.capacity}<span class="text-white"> seats</span>`
+      );
+      $('#logo').attr('src', data.response[0].venue.image);
+    })
+    .catch((error) => console.log('error', error));
 };
 
 const getSoccerFixtures = (
@@ -123,11 +195,12 @@ const addFixturesToPage = (fixtures) => {
 
       const fixtureDate = dayjs(match.fixture.date);
       const formattedTime = fixtureDate.format('ddd, MMM DD, hh:mm A');
-      const formattedDate = `${fixtureDate.add(1, 'day').format('ddd, MMM DD')} (Not informed)`;
-      const timeOrDate =
-        match.fixture.date.split('T')[1].startsWith('00:')
-          ? formattedDate
-          : formattedTime;
+      const formattedDate = `${fixtureDate
+        .add(1, 'day')
+        .format('ddd, MMM DD')} (Not informed)`;
+      const timeOrDate = match.fixture.date.split('T')[1].startsWith('00:')
+        ? formattedDate
+        : formattedTime;
       const date = `${timeOrDate}`;
 
       const card = `

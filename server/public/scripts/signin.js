@@ -1,6 +1,7 @@
+import { auth } from './firebaseInit.js';
 import useAuthentication from '../hooks/useAuthentication.js';
 
-const auth = useAuthentication();
+const authHook = useAuthentication(auth);
 
 $(document).ready(() => {
   $('form').submit((e) => {
@@ -9,8 +10,8 @@ $(document).ready(() => {
     const email = $('#inputEmail').val();
     const password = $('#inputPassword').val();
 
-    auth
-      .handleAuthentication(email, password, auth.authOptions.signIn)
+    authHook
+      .handleAuthentication(email, password, authHook.authOptions.signIn)
       .then((user) => {
         if (user) {
           window.location.href = '/pages/home.html';

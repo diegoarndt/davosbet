@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(
   express.static(path.join(__dirname, 'public'), {
@@ -31,6 +31,11 @@ app.get('/home', (req, res) => {
 app.get('/profile', (req, res) => {
     res.render('template', { content: 'profile.ejs' });
   });
+
+// Route for the news page
+app.get('/news', (req, res) => {
+  res.render('template', { content: 'news.ejs' });
+});
 
 // Route for the contact us page
 app.get('/contact-us', (req, res) => {
