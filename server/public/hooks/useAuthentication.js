@@ -13,11 +13,12 @@ const useAuthentication = (auth) => {
     sendPasswordResetEmail: 3,
   };
 
-  const displayErrorMessage = (errorMessage) => {
+  const displayMessage = (message, type) => {
     // Display the error message on the page
-    const errorMessageElement = document.getElementById('error-message');
-    errorMessageElement.innerText = errorMessage;
-    errorMessageElement.classList.remove('d-none');
+    const messageElement = document.getElementById('message');
+    messageElement.classList.add(`alert-${type}`);
+    messageElement.innerText = message;
+    messageElement.classList.remove('d-none');
   };
 
   const handleAuthentication = async (email, password, option) => {
@@ -49,7 +50,7 @@ const useAuthentication = (auth) => {
     } catch (error) {
       errorHandler(error, (errorMessage) => {
         // Display the error message on the page
-        const errorMessageElement = document.getElementById('error-message');
+        const errorMessageElement = document.getElementById('message');
         errorMessageElement.innerText = errorMessage;
         errorMessageElement.classList.remove('d-none');
       });
@@ -61,7 +62,7 @@ const useAuthentication = (auth) => {
   return {
     firebaseConfig,
     authOptions,
-    displayErrorMessage,
+    displayMessage: displayMessage,
     handleAuthentication,
   };
 };

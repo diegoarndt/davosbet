@@ -27,7 +27,7 @@ $(document).ready(() => {
     const confirmPassword = $('#inputConfirmPassword').val();
 
     if (password !== confirmPassword) {
-      authHook.displayErrorMessage('Passwords do not match');
+      authHook.displayMessage('Passwords do not match', 'danger');
       return;
     }
 
