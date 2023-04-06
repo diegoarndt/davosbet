@@ -34,10 +34,16 @@ $(document).on("click", ".event-date", function () {
   getSoccerFixtures(selectedDate);
 });
 
-$(document).on("click", ".country", function (e) {
-  $(".country.selected").removeClass("selected");
-  $(e.currentTarget).addClass("selected");
+$(document).on('click', '.country', function (e) {
+  const currentPage = window.location.pathname;
+  const targetPage = '/pages/home.html';
 
+  if (currentPage !== targetPage) {
+    window.location.href = targetPage;
+  }
+
+  $('.country.selected').removeClass('selected');
+  $(e.currentTarget).addClass('selected');
   getSoccerFixtures();
 });
 
