@@ -14,6 +14,8 @@ const uploadProfilePicture = async (file, uid) => {
 };
 
 $(document).ready(() => {
+  initRecaptcha();
+
   $('form').submit(async (e) => {
     e.preventDefault();
 
@@ -88,3 +90,18 @@ $(document).ready(() => {
     }
   });
 });
+
+function initRecaptcha() {
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    'recaptcha-container',
+    {
+      size: 'invisible',
+      callback: (response) => {
+        console.log('Recaptcha resolved');
+      },
+      'expired-callback': () => {
+        console.log('Recaptcha expired');
+      },
+    }
+  );
+}
