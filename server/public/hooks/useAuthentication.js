@@ -39,12 +39,12 @@ const useAuthentication = (auth) => {
         user = userCredential.user;
         localStorage.setItem('user', JSON.stringify(user));
       } else if (option === authOptions.signUp) {
-        const userCredential = await createUserWithEmailAndPassword(
-          auth,
+        const userCredential = await auth.createUserWithEmailAndPassword(
           email,
           password
         );
         user = userCredential.user;
+  
         // Store the user's ID token in local storage
         localStorage.setItem('user', JSON.stringify(user));
       } else if (option === authOptions.sendPasswordResetEmail) {
