@@ -83,12 +83,12 @@
             .send("service_bljz9kj", "template_lyqlwev", templateParams)
             .then(
                 function (response) {
-                    console.log("SUCCESS!", response.status, response.text);
+                    console.log("Success!", response.status, response.text);
                     popupMessage.textContent =
                         "Thank you for contacting us. We will get back to you soon.";
                 },
                 function (error) {
-                    console.log("FAILED...", error);
+                    console.log("Failed...", error);
                     popupMessage.textContent =
                         "Error sending message. Please try again later.";
                 }

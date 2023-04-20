@@ -39,6 +39,7 @@
                 <h6 class="text-center">to your Davosbet sportscenter account</h6>
                 <div class="card-text">
                     <form action="/pages/home.html">
+                        <div id="recaptcha-container"></div>
                         <div class="form-group">
                             <label for="inputEmail">Email address</label>
                             <input type="email"
@@ -57,6 +58,12 @@
                         <button type="submit" class="btn btn-warning btn-block text-white p-2">Sign in</button>
                     </form>
                 </div>
+                <div class="text-center mt-4 mb-4">
+                    <span class="text-white font-weight-bold">or</span>
+                </div>
+                <button id="anonymous-signin-btn" class="btn btn-danger btn-block text-white p-2">
+                    Sign in anonymously
+                </button>
             </div>
         </div>
     </div>
@@ -72,6 +79,7 @@
     <script src="https://cdn.usebootstrap.com/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
 
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script type="module" src="./scripts/firebaseInit.js"></script>
     <script type="module" src="./scripts/signin.js"></script>
 </body>
