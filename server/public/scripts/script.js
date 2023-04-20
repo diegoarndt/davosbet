@@ -21,6 +21,10 @@ $(function () {
     $('#dropdownMenuButton').text(displayName);
   }
 
+  if (!displayName) {
+    $('#profile-button').remove();
+  }
+
   generateEventDates();
   getSoccerFixtures();
 
@@ -136,15 +140,12 @@ const getSoccerFixtures = (
   const league = $('.country.selected').data('id');
   const season = $('.country.selected').data('season');
 
-  console.log(date, league, season);
-
   fetch(
     `https://v3.football.api-sports.io/${endpoint}?league=${league}&season=${season}&date=${date}`,
     requestOptions
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       addFixturesToPage(data.response);
     })
     .catch((error) => console.log('error', error));

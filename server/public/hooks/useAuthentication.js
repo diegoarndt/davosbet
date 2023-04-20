@@ -11,6 +11,7 @@ const useAuthentication = (auth) => {
     signIn: 1,
     signUp: 2,
     sendPasswordResetEmail: 3,
+    signInAnonymously: 4,
   };
 
   const displayMessage = (message, type) => {
@@ -26,13 +27,16 @@ const useAuthentication = (auth) => {
 
     try {
       if (option === authOptions.signIn) {
-        const userCredential = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+        // Get the user credential with Recaptcha verification
+        const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+        const userCredential = await auth.signInWithCredential(credential, window.recaptchaVerifier);
         user = userCredential.user;
+      
         // Store the user's ID token in local storage
+        localStorage.setItem('user', JSON.stringify(user));
+      } else if (option === authOptions.signInAnonymously) {
+        const userCredential = await auth.signInAnonymously();
+        user = userCredential.user;
         localStorage.setItem('user', JSON.stringify(user));
       } else if (option === authOptions.signUp) {
         const userCredential = await createUserWithEmailAndPassword(
@@ -49,6 +53,7 @@ const useAuthentication = (auth) => {
       }
     } catch (error) {
       errorHandler(error, (errorMessage) => {
+        console.error(error);
         // Display the error message on the page
         const errorMessageElement = document.getElementById('message');
         errorMessageElement.innerText = errorMessage;
